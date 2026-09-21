@@ -1,0 +1,120 @@
+.about-cta {
+  max-width: 1180px;
+  margin: 0 auto 88px;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 18px;
+  grid-template-columns: 1.2fr 1fr auto;
+  align-items: center;
+  box-shadow: 0 14px 30px #07130e24;
+}
+.about-cta-title {
+  font: 800 clamp(24px, 3vw, 40px)/1.04 var(--display);
+  letter-spacing: -0.06em;
+}
+.about-cta-title i {
+  font-style: normal;
+  color: #ba7d2c;
+}
+.about-cta p {
+  color: var(--muted);
+  margin: 0;
+}
+.about-cta p b {
+  color: var(--ink);
+  display: block;
+}
+.about-cta .btn {
+  white-space: nowrap;
+  background: #d69f3e;
+  color: var(--green);
+  box-shadow: 0 7px 15px #b87f2b33;
+}
+.about-cta .btn:hover {
+  background: #edc66b;
+}
+@media (max-width: 900px) {
+  .about-cta {
+    margin: 0 32px 65px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .about-cta .btn {
+    grid-column: span 2;
+    justify-self: start;
+  }
+}
+@media (max-width: 520px) {
+  .about-cta {
+    margin: 0 20px 55px;
+    border-radius: 13px;
+  }
+  .about-cta p {
+    margin: 20px 0;
+  }
+  .about-cta .btn {
+    width: 100%;
+    font-size: 11px;
+  }
+}
+.about-cta {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 4;
+}
+.about-cta-title {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.about-cta p {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.about-cta .btn {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+@media (max-width: 520px) {
+  .about-cta {
+    display: block !important;
+  }
+  .about-cta-title {
+    display: block;
+  }
+  .about-cta .btn {
+    display: flex !important;
+  }
+}
+.about-cta {
+  padding: 34px 42px;
+  min-height: 150px;
+  gap: 42px;
+}
+.about-cta-title {
+  font-size: clamp(27px, 3.2vw, 44px);
+}
+.about-cta p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+.about-cta .btn {
+  border-radius: 7px;
+  padding: 16px 22px;
+}
+@media (max-width: 900px) {
+  .about-cta {
+    padding: 30px 32px;
+  }
+}
+@media (max-width: 520px) {
+  .about-cta {
+    padding: 28px 22px;
+  }
+  .about-cta p {
+    font-size: 14px;
+  }
+  .about-cta .btn {
+    border-radius: 6px;
+  }
+}

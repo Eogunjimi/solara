@@ -1,0 +1,50 @@
+.faq p {
+  color: var(--muted);
+  max-width: 500px;
+}
+.faq {
+  background: var(--cream);
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 110px;
+}
+.faq h2 {
+  margin-bottom: 22px;
+}
+.accordion {
+  border-top: 1px solid #cfd7cf;
+}
+.faq-item {
+  border-bottom: 1px solid #cfd7cf;
+}
+.faq-item button {
+  width: 100%;
+  border: 0;
+  background: none;
+  padding: 21px 0;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  font: 600 15px var(--body);
+  color: var(--ink);
+  cursor: pointer;
+}
+.faq-item button svg {
+  transition: 0.25s;
+}
+.faq-item.active button svg {
+  transform: rotate(180deg);
+  color: #bc8830;
+}
+.faq-item p {
+  font-size: 14px;
+  margin: -3px 40px 22px 0;
+}
+@media (max-width: 800px) {
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+}

@@ -1,0 +1,145 @@
+.standard-section {
+  background: var(--cream);
+  padding: 112px 0;
+}
+.standard-grid {
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 85px;
+  align-items: center;
+}
+.standard-copy h2 {
+  font-size: clamp(40px, 4.7vw, 63px);
+  line-height: 1.02;
+  letter-spacing: -0.07em;
+  margin: 0 0 20px;
+}
+.standard-copy > p {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 520px;
+  margin-bottom: 28px;
+}
+.standard-points {
+  display: grid;
+  gap: 14px;
+}
+.standard-point {
+  border: 1px solid #1d2821;
+  border-radius: 11px;
+  padding: 17px 20px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  background: #f8f9f5;
+  transition: 0.25s;
+}
+.standard-point:hover {
+  background: #fff;
+  transform: translateX(5px);
+  box-shadow: 0 7px 18px #18201c12;
+}
+.standard-point > span {
+  color: #b5832e;
+  font: 700 12px var(--body);
+  padding-top: 2px;
+}
+.standard-point h3 {
+  font-size: 16px;
+  margin: 0 0 4px;
+}
+.standard-point p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.45;
+}
+.standard-visual {
+  position: relative;
+}
+.standard-image {
+  height: 590px;
+  border-radius: 15px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 12px 25px #18201c2c;
+}
+.standard-badge {
+  position: absolute;
+  bottom: -35px;
+  left: -35px;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--green);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 8px 15px #18201c30;
+  border: 6px solid var(--cream);
+  font-size: 8px;
+  line-height: 1.15;
+}
+.standard-badge svg {
+  margin-bottom: 6px;
+}
+.standard-badge b {
+  font-size: 10px;
+}
+@media (max-width: 800px) {
+  .standard-section {
+    padding: 78px 0;
+  }
+  .standard-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .standard-visual {
+    order: -1;
+  }
+  .standard-image {
+    height: 400px;
+  }
+  .standard-badge {
+    left: 16px;
+    bottom: -28px;
+    width: 95px;
+    height: 95px;
+  }
+  .standard-copy {
+    padding-top: 12px;
+  }
+  .standard-point:hover {
+    transform: none;
+  }
+}
+@media (max-width: 480px) {
+  .standard-image {
+    height: 340px;
+  }
+  .standard-copy h2 {
+    font-size: 42px;
+  }
+  .standard-point {
+    padding: 15px;
+    gap: 14px;
+  }
+}
+.standard-section {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 1;
+}
+.standard-grid {
+  display: grid !important;
+}
+.standard-visual {
+  display: block !important;
+}
+.standard-copy {
+  display: block !important;
+}
