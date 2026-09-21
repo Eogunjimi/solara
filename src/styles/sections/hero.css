@@ -183,3 +183,13 @@
     font-size: 9px;
   }
 }
+
+.proof-rating .proof-stars {
+  display: inline-flex;
+  gap: 2px;
+  vertical-align: baseline;
+}
+.proof-stars svg {
+  width: 1em;
+  height: 1em;
+}

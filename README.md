@@ -93,7 +93,7 @@ Deploy the contents of `dist/` to a static host. Configure the host to **serve `
 - Phone/email details, social proof, ratings, testimonials, partner names, and business claims are existing placeholder/unverified content. Review them with the business before publishing.
 - Article data currently contains summaries only. Detail pages explicitly state that the full guides are not yet published; add approved content before advertising a complete academy.
 - Replace external stock images with approved business photography and verify usage rights. The founder image is not a verified portrait.
-- Privacy and terms are currently footer text, not implemented policy pages.
+- Privacy and terms now link to starter demo notices. Have these reviewed and completed for the real business before enabling live enquiries. No social profile links are shown because verified profile URLs have not been supplied.
 
 ## Automated checks
 

@@ -39,3 +39,25 @@
     padding: 75px 0 80px;
   }
 }
+
+.policy-copy {
+  max-width: 840px;
+}
+.policy-copy > section {
+  margin: 0 0 32px;
+}
+.policy-copy h2 {
+  margin-bottom: 12px;
+  font-size: clamp(22px, 3vw, 30px);
+  letter-spacing: -0.04em;
+}
+.policy-copy p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+.policy-notice {
+  padding: 20px 24px;
+  margin-bottom: 40px;
+  border-left: 3px solid var(--gold);
+  background: var(--cream);
+}

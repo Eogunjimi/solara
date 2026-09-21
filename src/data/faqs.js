@@ -1,22 +1,34 @@
 export const faqs = [
   {
-    question: 'How much does a solar system cost?',
+    question: 'How much does a complete solar system cost?',
     answer:
-      'Every system is different. Your quote depends on your energy needs, property and the equipment that suits you best. Tell us what you need and we will recommend the right place to start.',
+      'It depends on your energy needs, the appliances you want to power, battery capacity, and inverter size. We assess your requirements and recommend a system that fits your property and budget.',
   },
   {
-    question: 'Can solar power my whole home or business?',
+    question: 'What size inverter do I need?',
     answer:
-      'Often, yes—but it depends on what you want to run and for how long. We size systems around your essential loads and priorities.',
+      'The right inverter depends on the appliances you need to run and your total power consumption. We assess your needs and recommend the appropriate capacity for your home or business.',
   },
   {
-    question: 'Do you install battery backup systems?',
+    question: 'Can solar power my AC, fridge and other appliances?',
     answer:
-      'Yes. Battery storage can be designed as part of a new solar system or added to an existing setup.',
+      'Yes. We design solar and inverter systems that can power essential appliances including ACs, refrigerators, freezers, TVs, fans, lighting and pumping machines, depending on the system capacity.',
   },
   {
-    question: 'What areas do you serve?',
+    question: 'How long will my battery last?',
     answer:
-      'We currently work with homes and businesses across Lagos. Get in touch to confirm availability for your area.',
+      "Battery runtime depends on its capacity and the amount of power you're using. We'll help you choose a battery system based on how much backup power you need.",
+  },
+  {
+    question: 'Can solar work during the rainy season?',
+    answer:
+      'Yes. Solar panels can still generate power during cloudy and rainy weather, although production may be reduced. A properly designed system with sufficient battery storage helps maintain reliable power.',
+  },
+  {
+    question: 'How does the installation process work?',
+    answerIntro: "It's simple: ",
+    answer:
+      'Tell us what you need → Property assessment → Get your quote → Professional installation → Enjoy reliable solar power.',
+    emphasizeAnswer: true,
   },
 ];

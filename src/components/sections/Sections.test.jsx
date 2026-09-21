@@ -30,18 +30,20 @@ describe('interactive sections', () => {
   it('opens and closes FAQ answers', async () => {
     const user = userEvent.setup();
     renderSection(<FaqSection />);
-    const first = screen.getByRole('button', { name: 'How much does a solar system cost?' });
+    const first = screen.getByRole('button', {
+      name: 'How much does a complete solar system cost?',
+    });
     const second = screen.getByRole('button', {
-      name: 'Can solar power my whole home or business?',
+      name: 'What size inverter do I need?',
     });
     expect(first).toHaveAttribute('aria-expanded', 'true');
     await user.click(second);
     expect(first).toHaveAttribute('aria-expanded', 'false');
     expect(second).toHaveAttribute('aria-expanded', 'true');
-    expect(screen.getByText(/Often, yes/)).toBeVisible();
+    expect(screen.getByText(/The right inverter depends/)).toBeVisible();
     await user.click(second);
     expect(second).toHaveAttribute('aria-expanded', 'false');
-    expect(screen.queryByText(/Often, yes/)).not.toBeInTheDocument();
+    expect(screen.getByText(/The right inverter depends/)).not.toBeVisible();
   });
 
   it('cycles reviews in both directions and wraps around', async () => {

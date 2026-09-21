@@ -1,6 +1,7 @@
 @import './tokens.css';
 @import './base.css';
 @import './layout.css';
+@import './footer.css';
 @import './pages.css';
 @import './features/quote.css';
 @import './features/academy.css';
@@ -13,6 +14,8 @@
 @import './sections/call-to-action.css';
 @import './sections/standards.css';
 @import './sections/projects.css';
+@import './sections/work-carousel.css';
 @import './sections/process.css';
 @import './sections/faq.css';
+@import './service-detail.css';
 @import './accessibility.css';

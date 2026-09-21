@@ -9,7 +9,7 @@ export default function ReviewsSection() {
     return () => clearInterval(timer);
   }, []);
   return (
-    <section className="reviews section" id="about">
+    <section className="reviews section" id="reviews">
       <div className="container">
         <div className="reviews-head">
           <div>

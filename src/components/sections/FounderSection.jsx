@@ -1,19 +1,33 @@
+import SolarCallToAction from './SolarCallToAction.jsx';
 import { images } from '../../data/images.js';
 
 export default function FounderSection() {
   return (
-    <section className="about-founder">
+    <section className="section about-founder" id="about" aria-labelledby="about-heading">
       <div className="container about-founder-grid">
-        <div className="founder-portrait" style={{ backgroundImage: `url(${images.install})` }}>
+        <div className="founder-portrait">
+          <div className="founder-fallback" aria-hidden="true">
+            <span>AO</span>
+            <small>POWERING POSSIBILITY</small>
+          </div>
+          <img
+            className="founder-photo"
+            src={images.install}
+            alt=""
+            loading="lazy"
+            onError={(event) => {
+              event.currentTarget.style.display = 'none';
+            }}
+          />
           <div className="founder-caption">
             <strong>AFEEZ ORIYOMI</strong>
             <span>Founder, Afeez Tech Solar Global Service Technology</span>
           </div>
         </div>
         <div className="founder-copy">
-          <h2>
-            Built on experience.
-            <br />
+          <div className="eyebrow">ABOUT US</div>
+          <h2 id="about-heading">
+            Built on experience. <br />
             <i>Driven by better power.</i>
           </h2>
           <p>
@@ -42,6 +56,9 @@ export default function FounderSection() {
             Your power needs are personal to you, and they&apos;re personal to me too.
           </div>
         </div>
+      </div>
+      <div className="container">
+        <SolarCallToAction />
       </div>
     </section>
   );

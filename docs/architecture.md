@@ -2,7 +2,7 @@
 
 ## Design goals
 
-Keep the site easy to change without introducing infrastructure it does not need. The application remains a client-rendered React/Vite site. This refactor preserves the existing page content and section layouts, including the transparent **How It Works** background.
+Keep the site easy to change without introducing infrastructure it does not need. The application remains a client-rendered React/Vite site. This refactor preserves the existing page content and section layouts, with a responsive, dark connected workflow for **How It Works**.
 
 JavaScript was retained intentionally: converting the product to TypeScript or introducing a framework/backend is a separate decision, not a prerequisite for separating responsibilities. Runtime dependencies use version ranges rather than `latest`; `package-lock.json` and `npm ci` make installs reproducible. Build and test tools belong in `devDependencies`.
 
@@ -58,7 +58,7 @@ There are intentionally no empty API/service/store directories or fake integrati
 ## Testing and quality gates
 
 - **Vitest + React Testing Library:** route rendering, one shared layout, unknown-route handling, navigation, unique anchors, filter behavior, FAQ/review interactions, interval cleanup, quote validation, and render-error recovery.
-- **Playwright:** real browser execution, direct route reloads, history navigation, mobile menu behavior, cross-page hash scrolling, form validation, interactive sections, layout overflow, and the light process-section background.
+- **Playwright:** real browser execution, direct route reloads, history navigation, mobile menu behavior, cross-page hash scrolling, form validation, interactive sections, layout overflow, and the responsive process workflow.
 - **ESLint:** undefined references (including JSX), unused code, React conventions, Hooks rules, and Fast Refresh boundaries.
 - **Prettier + EditorConfig:** consistent readable source, CSS, and configuration.
 - **GitHub Actions:** runs the quality gates and browser tests; uploads reports on failure.

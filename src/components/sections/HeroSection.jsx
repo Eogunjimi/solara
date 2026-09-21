@@ -1,5 +1,6 @@
 import { CheckCircle2 } from 'lucide-react';
 import ButtonLink from '../ui/ButtonLink.jsx';
+import HeroSocialProof from '../ui/HeroSocialProof.jsx';
 import { images } from '../../data/images.js';
 
 export default function HeroSection() {
@@ -34,21 +35,7 @@ export default function HeroSection() {
             <CheckCircle2 size={16} /> Professional installation
           </span>
         </div>
-        <div className="hero-social-proof">
-          <div className="proof-avatars">
-            <i>A</i>
-            <i>K</i>
-            <i>J</i>
-            <i>N</i>
-          </div>
-          <b className="facebook-mark">f</b>
-          <div className="proof-rating">
-            <strong>
-              5.0 <span>★★★★★</span>
-            </strong>
-            <small>Trusted by 200 Contractors Nationwide</small>
-          </div>
-        </div>
+        <HeroSocialProof />
       </div>
       <div className="scroll">
         SCROLL TO EXPLORE <span />

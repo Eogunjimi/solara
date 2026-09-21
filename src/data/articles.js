@@ -6,20 +6,20 @@ export const articles = [
     title: 'How to choose the right solar system for your home',
     excerpt: 'A practical guide to understanding your power needs before you request a quote.',
     category: 'Buying guides',
-    image: images.roof,
+    image: images.hero,
   },
   {
     id: '1',
     title: 'Solar panels, inverters and batteries explained',
     excerpt: 'The three core parts of a solar system and how they work together.',
     category: 'Solar education',
-    image: images.battery,
+    image: '/academy/system-basics.svg',
   },
   {
     id: '2',
     title: 'What affects solar installation cost?',
     excerpt: 'A clear look at the factors that shape a tailored solar quotation.',
     category: 'Cost & budget',
-    image: images.install,
+    image: '/panels/mono.jpg',
   },
 ];
