@@ -49,7 +49,7 @@ test('navigation, browser history, menu, and quote anchor work together', async 
       'false',
     );
   await page.goBack();
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Power your day');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Reliable solar energy');
   if (isMobile) await page.getByRole('button', { name: 'Open menu' }).click();
   await page.getByRole('navigation').getByRole('link', { name: 'Get a free quote' }).click();
   await expect(page).toHaveURL(/\/contact#quote$/);
@@ -167,7 +167,7 @@ test('unknown routes show recovery rather than silently rendering the homepage',
   await expect(page.getByRole('heading', { level: 1 })).toContainText('back on track');
   await page.getByRole('link', { name: 'Back to home' }).click();
   await expect(page).toHaveURL('/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Power your day');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Reliable solar energy');
 });
 
 test('FAQ cards follow the brand palette, support keyboard controls, and fit small screens', async ({

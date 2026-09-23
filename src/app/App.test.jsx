@@ -17,7 +17,7 @@ function renderRoute(path) {
 
 describe('application routes', () => {
   it.each([
-    ['/', /Power your day/],
+    ['/', /Reliable solar energy/],
     ['/about', /Powering possibility, thoughtfully/],
     ['/services', /The right system starts with listening/],
     ['/areas', /Solar for Lagos/],
