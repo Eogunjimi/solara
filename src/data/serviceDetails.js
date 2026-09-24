@@ -7,7 +7,7 @@ export const serviceDetails = {
       'Professional Residential Solar Services for Homeowners Who Want More Control Over Their Power',
     overview: [
       'A solar package chosen from a price list can miss the way your home actually uses power. The fridge, the fans, the water pump, the hours you need backup—each one matters. When those details are overlooked, you can end up with a system that struggles when you need it most.',
-      'Solara starts with your home, not a standard package. We assess your appliances, your daily routine, and your backup priorities, then recommend the panels, inverter, and battery capacity to suit them. From careful installation to practical handover, every decision is made around homeowners who want dependable power and a clearer plan for everyday life.',
+      'AFEEZTECHSOLAR starts with your home, not a standard package. We assess your appliances, your daily routine, and your backup priorities, then recommend the panels, inverter, and battery capacity to suit them. From careful installation to practical handover, every decision is made around homeowners who want dependable power and a clearer plan for everyday life.',
     ],
     highlights: ['Personal system sizing', 'Solar & battery integration', 'Practical handover'],
     included: [
@@ -81,7 +81,7 @@ export const serviceDetails = {
       'Professional Commercial Solar Services for Businesses That Want to Stay Focused on Growth',
     overview: [
       'A business cannot plan its power around guesswork. Equipment starts at different times, demand changes through the day, and some operations simply cannot wait for the next supply window. A generic solar package can overlook those realities, leaving the most important parts of your business without the support they need.',
-      'Solara builds the recommendation around your operations. We review your working hours, equipment, and priority loads before planning generation and backup capacity. Installation is coordinated around site access and agreed interruptions, with testing and guidance for your team. It is a practical approach for business owners who want to spend less time managing power problems and more time running their business.',
+      'AFEEZTECHSOLAR builds the recommendation around your operations. We review your working hours, equipment, and priority loads before planning generation and backup capacity. Installation is coordinated around site access and agreed interruptions, with testing and guidance for your team. It is a practical approach for business owners who want to spend less time managing power problems and more time running their business.',
     ],
     highlights: ['Business load assessment', 'Priority-circuit planning', 'Operational handover'],
     included: [
@@ -152,7 +152,7 @@ export const serviceDetails = {
       'Professional Inverter AC & Washing Machine Services for People Who Want Everyday Comfort Without the Guesswork',
     overview: [
       'An efficient appliance still needs the right installation. An unsuitable location, an overlooked power requirement, or a poorly planned water connection can turn a useful purchase into a daily frustration. Connecting the appliance is only part of the job; understanding what it needs to work properly comes first.',
-      'Solara looks at the model, the space, and the connections before recommending the next step. We plan the agreed installation or support work around your property, check the appliance in operation, and explain the controls and care that matter. The result is a more considered service for homes and businesses that want their appliances set up for everyday use—not simply plugged in and left behind.',
+      'AFEEZTECHSOLAR looks at the model, the space, and the connections before recommending the next step. We plan the agreed installation or support work around your property, check the appliance in operation, and explain the controls and care that matter. The result is a more considered service for homes and businesses that want their appliances set up for everyday use—not simply plugged in and left behind.',
     ],
     highlights: [
       'Appliance-specific assessment',
@@ -223,7 +223,7 @@ export const serviceDetails = {
     overviewTitle: 'Professional Electronic Repairs for People Who Want Answers, Not Another Guess',
     overview: [
       'Replacing parts without understanding the fault can mean repeated problems, wasted time, and another repair bill. A device that powers on briefly has not necessarily had its underlying issue resolved. You need a clear explanation of what is wrong and whether a repair makes sense before deciding how to proceed.',
-      'Solara begins with the symptoms, the equipment history, and a careful assessment. We explain the practical options, discuss any suitable parts required, and agree on the work before proceeding. Relevant functions are checked before handover. It is a diagnosis-first approach for customers who want an informed decision about their equipment, rather than a promise made before anyone has inspected it.',
+      'AFEEZTECHSOLAR begins with the symptoms, the equipment history, and a careful assessment. We explain the practical options, discuss any suitable parts required, and agree on the work before proceeding. Relevant functions are checked before handover. It is a diagnosis-first approach for customers who want an informed decision about their equipment, rather than a promise made before anyone has inspected it.',
     ],
     highlights: ['Fault assessment', 'Clear repair scope', 'Post-repair testing'],
     included: [
@@ -292,7 +292,7 @@ export const serviceDetails = {
       'Professional Electrical Wiring Services for Property Owners Who Want the Job Done Properly',
     overview: [
       'More sockets do not automatically mean more capacity. A wiring layout that ignores the equipment it serves can leave a property with inconvenient connections, unreliable circuits, and problems that become harder to address once the finish is complete. Electrical planning deserves more than a quick look at a floor plan.',
-      'Solara assesses the property, the intended loads, and the existing installation before agreeing on the work. We plan routes and connection points around your requirements, carry out the approved wiring, and check the completed installation before handover. It is a considered service for homeowners and businesses that want their electrical setup planned around real use, not assumptions.',
+      'AFEEZTECHSOLAR assesses the property, the intended loads, and the existing installation before agreeing on the work. We plan routes and connection points around your requirements, carry out the approved wiring, and check the completed installation before handover. It is a considered service for homeowners and businesses that want their electrical setup planned around real use, not assumptions.',
     ],
     highlights: ['Property-specific planning', 'Neat installation', 'Checks before handover'],
     included: [
@@ -361,7 +361,7 @@ export const serviceDetails = {
       'Professional Conduit & Surface Installation for Property Owners Who Want a Cleaner, More Organised Finish',
     overview: [
       'Cable routes are easy to overlook until they get in the way. Runs that have not been planned around the property can create an untidy finish, awkward access, and unnecessary disruption when something needs attention. The right route matters just as much as the connection at the end of it.',
-      'Solara reviews your layout, access, and connection points before recommending conduit or surface installation. We explain the trade-offs, agree on the routes and scope, and carry out the work with attention to protection, organisation, and future access. Every decision is made for property owners who want a practical installation that fits their building and respects the finish they are working towards.',
+      'AFEEZTECHSOLAR reviews your layout, access, and connection points before recommending conduit or surface installation. We explain the trade-offs, agree on the routes and scope, and carry out the work with attention to protection, organisation, and future access. Every decision is made for property owners who want a practical installation that fits their building and respects the finish they are working towards.',
     ],
     highlights: ['Route planning', 'Property-aware installation', 'Accessible cable organisation'],
     included: [
@@ -432,7 +432,7 @@ export const serviceDetails = {
       'Professional CCTV Installation & Repairs for Property Owners Who Want a Clearer View of What Matters',
     overview: [
       'More cameras do not always mean better coverage. Poor positioning, overlooked blind spots, and a recorder that is not set up for your needs can leave important areas out of view. An existing system with missing video or recording problems needs more than another camera added to the wall.',
-      'Solara starts with the areas you need to monitor, the layout of the property, and any equipment already in place. We assess positions, connections, and recording requirements before recommending installation or repair work. Relevant functions are tested and everyday operation is explained, giving homes and businesses a clearer plan for viewing and managing their system.',
+      'AFEEZTECHSOLAR starts with the areas you need to monitor, the layout of the property, and any equipment already in place. We assess positions, connections, and recording requirements before recommending installation or repair work. Relevant functions are tested and everyday operation is explained, giving homes and businesses a clearer plan for viewing and managing their system.',
     ],
     highlights: ['Coverage assessment', 'Installation & fault finding', 'Viewing guidance'],
     included: [

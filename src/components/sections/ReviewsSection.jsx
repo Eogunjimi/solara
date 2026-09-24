@@ -51,7 +51,7 @@ export default function ReviewsSection() {
                     <span>{review.author[0]}</span>
                     <div>
                       <b>{review.author}</b>
-                      <small>Solara experience</small>
+                      <small>AFEEZTECHSOLAR experience</small>
                     </div>
                   </div>
                 </article>

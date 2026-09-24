@@ -53,7 +53,7 @@ export default function Footer() {
         <div className="container">
           <div className="footer-top">
             <div className="footer-brand">
-              <Link className="logo" to="/" aria-label="Solara home">
+              <Link className="logo" to="/" aria-label="AFEEZTECHSOLAR home">
                 <Logo />
               </Link>
               <p className="footer-description">{siteConfig.description}</p>

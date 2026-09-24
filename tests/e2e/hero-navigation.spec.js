@@ -155,10 +155,12 @@ test('centered desktop navigation and mobile menu keep all destinations and keyb
       });
       expect(spacing.left).toBeGreaterThanOrEqual(16);
       expect(spacing.right).toBeGreaterThanOrEqual(16);
-      const center = await header.getByRole('link', { name: 'Solara home' }).evaluate((node) => {
-        const rect = node.getBoundingClientRect();
-        return (rect.left + rect.right) / 2;
-      });
+      const center = await header
+        .getByRole('link', { name: 'AFEEZTECHSOLAR home' })
+        .evaluate((node) => {
+          const rect = node.getBoundingClientRect();
+          return (rect.left + rect.right) / 2;
+        });
       expect(Math.abs(center - width / 2)).toBeLessThanOrEqual(1);
     }
   }

@@ -76,7 +76,7 @@ export default function Header() {
         }}
       >
         <div className="nav-center">
-          <Link className="logo" to="/" aria-label="Solara home" onClick={closeMenu}>
+          <Link className="logo" to="/" aria-label="AFEEZTECHSOLAR home" onClick={closeMenu}>
             <Logo />
           </Link>
         </div>

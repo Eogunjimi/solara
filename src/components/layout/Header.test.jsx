@@ -28,7 +28,7 @@ describe('desktop and mobile navigation', () => {
     ].forEach(([label, to]) =>
       expect(nav.getByRole('link', { name: label, exact: true })).toHaveAttribute('href', to),
     );
-    expect(screen.getByRole('link', { name: 'Solara home' })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: 'AFEEZTECHSOLAR home' })).toHaveAttribute('href', '/');
     expect(nav.getByRole('link', { name: siteConfig.phone })).toHaveAttribute(
       'href',
       siteConfig.phoneHref,

@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { siteConfig } from '../../src/config/site.js';
 import { services } from '../../src/data/services.js';
 import { serviceDetails } from '../../src/data/serviceDetails.js';
 import { faqs } from '../../src/data/faqs.js';
@@ -20,7 +21,7 @@ for (const service of services) {
     await page.goto(`/services/${service.id}`);
     const detail = serviceDetails[service.id];
     const landing = page.locator('.service-detail');
-    await expect(page).toHaveTitle(`${service.title} | Solara Energy`);
+    await expect(page).toHaveTitle(`${service.title} | ${siteConfig.title}`);
     await expect(landing.getByRole('heading', { level: 1 })).toHaveText(detail.heroTitle);
     await expect(page.getByRole('main')).toHaveCount(1);
     await expect(page.getByRole('contentinfo')).toHaveCount(1);

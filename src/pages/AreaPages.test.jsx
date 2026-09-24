@@ -3,6 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 import App from '../app/App.jsx';
 import { serviceAreas } from '../data/serviceAreas.js';
+import { siteConfig } from '../config/site.js';
 import { services } from '../data/services.js';
 
 function renderRoute(path) {
@@ -33,7 +34,7 @@ describe('Lagos location pages', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
       `Solar & electrical services in ${area.name}.`,
     );
-    expect(document.title).toBe(`${area.name} Solar & Electrical Services | Solara Energy`);
+    expect(document.title).toBe(`${area.name} Solar & Electrical Services | ${siteConfig.title}`);
     area.focus.forEach((point) => expect(screen.getByText(point)).toBeInTheDocument());
     const serviceSection = screen.getByRole('region', {
       name: 'Explore services for your property.',
@@ -53,6 +54,6 @@ describe('Lagos location pages', () => {
   it('shows recovery for an unknown location', () => {
     renderRoute('/areas/not-a-location');
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('back on track');
-    expect(document.title).toBe('Page not found | Solara Energy');
+    expect(document.title).toBe(`Page not found | ${siteConfig.title}`);
   });
 });

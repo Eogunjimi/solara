@@ -1,4 +1,4 @@
-# Solara Energy
+# AFEEZTECHSOLAR Energy
 
 A responsive solar-energy marketing site built with **React, Vite, and React Router**. The project uses JavaScript/JSX, plain CSS, and local React state. There is no backend, database, or live enquiry delivery yet.
 
@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Vite listens on `0.0.0.0:5173`. In Arena, open the **Solara website** live preview. Locally, open `http://localhost:5173`. No environment variables are required.
+Vite listens on `0.0.0.0:5173`. In Arena, open the **AFEEZTECHSOLAR website** live preview. Locally, open `http://localhost:5173`. No environment variables are required.
 
 ## Commands
 
@@ -85,7 +85,7 @@ The `image-search/` and `uploads/` directories retain the original reference mat
 
 The app has explicit routes for the home, about, services, areas, projects, contact, and academy pages, plus service/location/article detail routes and a not-found screen. `/quote` redirects to `/contact#quote`. Header/footer links use client-side navigation; phone and email links remain native anchors.
 
-A floating WhatsApp shortcut is rendered from the shared layout on every page. Its `wa.me` destination is derived from the configured phone number in `src/config/site.js` (still the placeholder line), so replace that number with the live WhatsApp number before launch.
+A floating WhatsApp shortcut is rendered from the shared layout on every page. Its `wa.me` destination is derived from the configured phone number in `src/config/site.js`, so changing the business number updates the shortcut automatically. Keep the number in one place; do not hardcode a second one in components.
 
 Deploy the contents of `dist/` to a static host. Configure the host to **serve `index.html` for application routes that do not match a static file**, so direct visits to `/about` and other nested routes work. Vite provides this fallback in development and preview; your production host must provide it too. The client-side not-found screen is not an HTTP 404 response on a typical static SPA host.
 

@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { siteConfig } from '../../src/config/site.js';
 import { serviceAreas } from '../../src/data/serviceAreas.js';
 import { services } from '../../src/data/services.js';
 
@@ -75,7 +76,9 @@ test('all ten area pages support direct loads, reloads, local inspection CTAs an
 }) => {
   for (const area of serviceAreas) {
     await page.goto(`/areas/${area.slug}`);
-    await expect(page).toHaveTitle(`${area.name} Solar & Electrical Services | Solara Energy`);
+    await expect(page).toHaveTitle(
+      `${area.name} Solar & Electrical Services | ${siteConfig.title}`,
+    );
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(
       `Solar & electrical services in ${area.name}.`,
     );

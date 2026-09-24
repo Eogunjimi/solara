@@ -23,7 +23,7 @@ Dependencies flow from pages to features/sections to shared UI and data. Shared 
 
 Use React Router `Link`/`NavLink` for internal navigation and native anchors for `mailto:`, `tel:`, and external URLs. `ButtonLink` is a navigation link, not a form-submit button.
 
-`RouteEffects` updates the document title and handles scroll-to-top/hash navigation on route changes. Cross-page CTAs use `/contact#quote` rather than a hash that may not exist on the current page. Section IDs must remain unique. The Solara Standard section uses `standard`; the project gallery owns `projects`.
+`RouteEffects` updates the document title and handles scroll-to-top/hash navigation on route changes. Cross-page CTAs use `/contact#quote` rather than a hash that may not exist on the current page. Section IDs must remain unique. The AFEEZTECHSOLAR Standard section uses `standard`; the project gallery owns `projects`.
 
 Unknown routes render `NotFoundPage`, rather than silently falling back to the homepage. Existing service/article links now resolve explicitly. Service detail pages reuse the existing service description; article detail pages label the current summary-only content honestly.
 
@@ -90,6 +90,6 @@ The site remains a marketing frontend, not a completed production platform. No c
 ## WhatsApp shortcut
 
 - `src/components/ui/WhatsAppButton.jsx` renders once from `SiteLayout`, so the floating shortcut appears on every page without pages or sections owning their own copy.
-- The destination comes from `whatsappHref` in `src/config/site.js`, which derives `wa.me` from the configured phone number and appends a prefilled greeting. The number is still the placeholder business phone; set the real WhatsApp line before launch, and do not hardcode a second number in components.
+- The destination comes from `whatsappHref` in `src/config/site.js`, which derives `wa.me` from the configured phone number and appends a prefilled greeting. The shortcut shares the business phone number, so keep that single value in the config rather than hardcoding a second number in components. Confirm the number is enabled for WhatsApp before launch.
 - The link opens in a new tab with `rel="noopener noreferrer"`. Its visible label is decorative (`aria-hidden`); the accessible name comes from the link's own `aria-label`.
 - An `IntersectionObserver` watches the footer's Back to top button and fades the shortcut out while that control is on screen, so the two never compete for the same corner. The observer is optional: without `IntersectionObserver` support the shortcut simply stays visible.

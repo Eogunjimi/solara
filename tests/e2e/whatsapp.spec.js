@@ -21,7 +21,7 @@ test('the WhatsApp shortcut is reachable on every page and steps aside for the f
     await expect(fab).toHaveAttribute('href', new RegExp(`^${base.replace(/\./g, '\\.')}\\?text=`));
     const href = await fab.getAttribute('href');
     expect(decodeURIComponent(href)).toBe(
-      `${base}?text=Hi Solara, I'd like to ask about solar and electrical services.`,
+      `${base}?text=Hi ${siteConfig.name}, I'd like to ask about solar and electrical services.`,
     );
     for (const width of [320, 390, 800, 1024, 1440, 1920]) {
       await page.setViewportSize({ width, height: 800 });

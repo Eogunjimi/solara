@@ -6,7 +6,7 @@ export const policies = {
     sections: [
       {
         title: 'The quote form is a demo',
-        body: 'The quote form checks your entries in your browser. It does not currently send the information to Solara or save it to a database or browser storage. Its confirmation is not a delivered enquiry. Please do not enter sensitive personal information.',
+        body: 'The quote form checks your entries in your browser. It does not currently send the information to AFEEZTECHSOLAR or save it to a database or browser storage. Its confirmation is not a delivered enquiry. Please do not enter sensitive personal information.',
       },
       {
         title: 'External services',
@@ -24,7 +24,7 @@ export const policies = {
   },
   terms: {
     title: 'Website terms',
-    introduction: 'Important information about the current Solara demonstration website.',
+    introduction: 'Important information about the current AFEEZTECHSOLAR demonstration website.',
     sections: [
       {
         title: 'Information, not a confirmed offer',

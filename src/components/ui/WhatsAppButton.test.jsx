@@ -10,7 +10,7 @@ describe('WhatsApp shortcut', () => {
     expect(link).toHaveAttribute('href', whatsappHref);
     expect(whatsappHref).toBe(
       `https://wa.me/${siteConfig.phoneHref.replace(/\D/g, '')}?text=${encodeURIComponent(
-        "Hi Solara, I'd like to ask about solar and electrical services.",
+        `Hi ${siteConfig.name}, I'd like to ask about solar and electrical services.`,
       )}`,
     );
   });

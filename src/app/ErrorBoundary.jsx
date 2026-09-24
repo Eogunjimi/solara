@@ -10,7 +10,7 @@ export default class ErrorBoundary extends Component {
 
   componentDidCatch(error, info) {
     // Replace with a production monitoring adapter when one is configured.
-    console.error('Solara render error', error, info.componentStack);
+    console.error('AFEEZTECHSOLAR render error', error, info.componentStack);
   }
 
   render() {
