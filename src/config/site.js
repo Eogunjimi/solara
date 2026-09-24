@@ -10,6 +10,13 @@ export const siteConfig = {
   location: 'Lagos, Nigeria',
 };
 
+// Replace the placeholder number above with the live WhatsApp line before launch.
+const whatsappDigits = siteConfig.phoneHref.replace(/\D/g, '');
+
+export const whatsappHref = `https://wa.me/${whatsappDigits}?text=${encodeURIComponent(
+  "Hi Solara, I'd like to ask about solar and electrical services.",
+)}`;
+
 export const navigation = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },

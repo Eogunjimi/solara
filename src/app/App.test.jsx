@@ -62,7 +62,9 @@ describe('application routes', () => {
       'aria-expanded',
       'true',
     );
-    await user.click(within(screen.getByRole('navigation')).getByRole('link', { name: 'About' }));
+    await user.click(
+      within(screen.getByRole('navigation')).getByRole('link', { name: 'About Us' }),
+    );
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Powering possibility');
     expect(screen.getByRole('button', { name: 'Open menu' })).toHaveAttribute(
       'aria-expanded',

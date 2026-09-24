@@ -6,6 +6,8 @@ import AcademyPage from '../pages/AcademyPage.jsx';
 import ArticlePage from '../pages/ArticlePage.jsx';
 import ServiceDetailPage from '../pages/ServiceDetailPage.jsx';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
+import AreasPage from '../pages/AreasPage.jsx';
+import AreaDetailPage from '../pages/AreaDetailPage.jsx';
 import PolicyPage from '../pages/PolicyPage.jsx';
 
 /** Router provider lives at the entry point so tests can use MemoryRouter. */
@@ -17,7 +19,8 @@ export default function App() {
         <Route path="about" element={<ContentPage type="about" />} />
         <Route path="services" element={<ContentPage type="services" />} />
         <Route path="services/:serviceId" element={<ServiceDetailPage />} />
-        <Route path="areas" element={<ContentPage type="areas" />} />
+        <Route path="areas" element={<AreasPage />} />
+        <Route path="areas/:areaSlug" element={<AreaDetailPage />} />
         <Route path="projects" element={<ContentPage type="projects" />} />
         <Route path="contact" element={<ContentPage type="contact" />} />
         <Route path="blog" element={<AcademyPage />} />

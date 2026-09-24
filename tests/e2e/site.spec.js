@@ -40,7 +40,7 @@ test('navigation, browser history, menu, and quote anchor work together', async 
 }) => {
   await page.goto('/');
   if (isMobile) await page.getByRole('button', { name: 'Open menu' }).click();
-  await page.getByRole('navigation').getByRole('link', { name: 'About', exact: true }).click();
+  await page.getByRole('navigation').getByRole('link', { name: 'About Us', exact: true }).click();
   await expect(page).toHaveURL(/\/about$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Powering possibility');
   if (isMobile)
@@ -51,7 +51,7 @@ test('navigation, browser history, menu, and quote anchor work together', async 
   await page.goBack();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Reliable solar energy');
   if (isMobile) await page.getByRole('button', { name: 'Open menu' }).click();
-  await page.getByRole('navigation').getByRole('link', { name: 'Get a free quote' }).click();
+  await page.getByRole('navigation').getByRole('link', { name: 'Free Site Inspection' }).click();
   await expect(page).toHaveURL(/\/contact#quote$/);
   await expect(page.locator('#quote')).toBeInViewport();
   await page.reload();

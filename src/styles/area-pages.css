@@ -1,0 +1,208 @@
+.area-page .page-hero {
+  background-image: var(--section-texture);
+  background-size: cover;
+}
+.area-page .page-hero h1 {
+  max-width: 1000px;
+  font-size: clamp(38px, 5vw, 70px);
+  text-wrap: balance;
+}
+.area-page .page-hero p {
+  max-width: 720px;
+}
+.area-page .btn {
+  border-radius: 7px;
+  min-height: 48px;
+}
+.area-page h2 {
+  font-size: clamp(30px, 3.5vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+.area-page .lead {
+  max-width: 790px;
+  line-height: 1.8;
+}
+.area-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+.area-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  min-height: 44px;
+  color: var(--gold);
+  font-size: 13px;
+}
+.area-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 36px;
+}
+.area-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--cream);
+  transition: border-color 0.2s ease;
+}
+.area-card > svg {
+  flex: none;
+  color: var(--gold);
+  margin-top: 4px;
+}
+.area-card > span {
+  flex: 1;
+  min-width: 0;
+}
+.area-card small {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.area-card h3 {
+  font-size: 24px;
+  margin: 6px 0 12px;
+  color: var(--green);
+}
+.area-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.area-card:hover {
+  border-color: var(--gold);
+}
+.area-availability {
+  margin-top: 40px;
+  padding: 28px;
+  border-left: 3px solid var(--gold);
+  background: var(--cream);
+}
+.area-availability h3 {
+  margin-bottom: 12px;
+}
+.area-availability p {
+  color: var(--muted);
+}
+.area-focus {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  padding: 0;
+  margin: 32px 0;
+  list-style: none;
+}
+.area-focus li {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--cream);
+}
+.area-focus svg {
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.area-focus p {
+  margin: 0;
+  color: var(--green);
+  line-height: 1.7;
+}
+.area-note {
+  max-width: 790px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.area-services {
+  background: var(--green);
+  color: var(--paper);
+  scroll-margin-top: 24px;
+}
+.area-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+.area-service-grid a {
+  display: flex;
+  flex-direction: column;
+  padding: 26px;
+  border: 1px solid #ffffff30;
+  border-radius: 12px;
+  background: #ffffff05;
+}
+.area-service-grid h3 {
+  font-size: 20px;
+  line-height: 1.3;
+}
+.area-service-grid p {
+  flex: 1;
+  font-size: 14px;
+  color: #d0dad3;
+  line-height: 1.7;
+}
+.area-service-grid span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+}
+.area-service-grid a:hover {
+  border-color: var(--gold);
+}
+.area-page .quote {
+  scroll-margin-top: 24px;
+}
+.area-page .quote h2 {
+  max-width: 550px;
+}
+.area-other-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.area-other-links a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--green);
+}
+.area-other-links a:hover {
+  border-color: var(--gold);
+}
+@media (max-width: 800px) {
+  .area-grid,
+  .area-focus,
+  .area-service-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .area-card {
+    padding: 24px 20px;
+    gap: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .area-actions {
+    flex-direction: column;
+  }
+}

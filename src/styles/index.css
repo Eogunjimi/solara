@@ -4,6 +4,7 @@
 @import './footer.css';
 @import './pages.css';
 @import './features/quote.css';
+@import './features/whatsapp.css';
 @import './features/academy.css';
 @import './sections/hero.css';
 @import './sections/trust.css';
@@ -18,4 +19,5 @@
 @import './sections/process.css';
 @import './sections/faq.css';
 @import './service-detail.css';
+@import './area-pages.css';
 @import './accessibility.css';

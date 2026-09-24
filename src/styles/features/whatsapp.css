@@ -1,0 +1,96 @@
+/* Floating WhatsApp shortcut, shared by every page through the site layout. */
+.whatsapp-fab {
+  position: fixed;
+  right: clamp(14px, 1.8vw, 26px);
+  bottom: calc(clamp(14px, 1.8vw, 26px) + env(safe-area-inset-bottom, 0px));
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  height: 56px;
+  padding: 0;
+  border-radius: 999px;
+  background: #25d366;
+  color: #06301a;
+  border: 1px solid #ffffff2e;
+  box-shadow: 0 14px 30px #04100b59;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+}
+
+@media (hover: hover) {
+  .whatsapp-fab:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 36px #04100b73;
+  }
+}
+
+.whatsapp-fab:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.whatsapp-fab[data-hidden='true'] {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+}
+
+.whatsapp-fab-mark {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  flex: 0 0 54px;
+}
+
+.whatsapp-fab-mark svg {
+  width: 26px;
+  height: 26px;
+}
+
+.whatsapp-fab-label {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font: 700 13px var(--body);
+  letter-spacing: 0.01em;
+  opacity: 0;
+  transition:
+    max-width 0.28s ease,
+    opacity 0.2s ease,
+    padding-right 0.28s ease;
+}
+
+@media (hover: hover) {
+  .whatsapp-fab:hover .whatsapp-fab-label,
+  .whatsapp-fab:focus-visible .whatsapp-fab-label {
+    max-width: 190px;
+    padding-right: 20px;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .whatsapp-fab {
+    height: 52px;
+  }
+  .whatsapp-fab-mark {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+  .whatsapp-fab-mark svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media print {
+  .whatsapp-fab {
+    display: none;
+  }
+}

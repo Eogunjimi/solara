@@ -72,3 +72,24 @@ The root `ErrorBoundary` provides a reload action if a render failure reaches th
 ## Scope of this refactor
 
 The site remains a marketing frontend, not a completed production platform. No company claims were newly verified, no full academy articles were fabricated, and no live enquiry service was added. Reference files and approved-for-review imagery remain in place.
+
+## Navigation and Lagos location pages
+
+- The shared header shows full desktop navigation at 1024px and above. About Us, Services, and Service Areas use disclosure lists with real parent links; smaller screens use an expandable mobile navigation panel.
+- The masthead is sticky. `top: -26px` parks the 26px utility strip above the viewport so only the 48px navigation bar stays pinned; on mobile the strip is hidden and the whole 48px bar pins. `main [id]` carries a matching `scroll-margin-top` so anchored sections and `/contact#quote` are not hidden behind the pinned bar.
+- Desktop layout is a single fitted row: left links, centered logo, right contact links and inspection CTA. The logo's own grid column is sized from its content, so the wrapper is centered at every width from 1024px up; services and area lists open as two-column panels anchored under their parent labels.
+- Navbar height is deliberate. Desktop bars measure 48px and every visible link keeps a 44px minimum tap height inside that band, so text and hit areas stay comfortably sized while the bar stays slim. Keep the logo lockup on one row at desktop widths; stacking the mark above the wordmark is what previously forced the bar taller.
+- The inspection CTA uses the same trick from the opposite direction: the link keeps a 44px box for tapping, while its pill is painted with a `::before` inset 7px from the top and bottom, so the visible button stays small and fitted inside the slim bar. Desktop only — inside the mobile panel the link paints a normal full-width 48px pill.
+- The masthead keeps the footer green but paints it at 75% opacity with a 16px backdrop blur, so page content washes behind the pinned bar instead of being cut off by a solid slab. `.site-header` itself is transparent so it cannot paint over that effect; only the open mobile panel re-paints green, at 98% because it sits on top of photography.
+- That pill is translucent (`rgba(214, 168, 77, 0.78)`) with a hairline light border and a small backdrop blur, so the green bar reads through it. Because the surface is see-through, the label uses the brand's dark ink on gold rather than white; white on translucent gold drops to roughly 2:1 contrast. Keep the translucent backgrounds paired with `#14231c` text.
+- `src/data/serviceAreas.js` is the single source for the ten area names, slugs, descriptions, and property-planning points. Both the header dropdown and `/areas` directory read it.
+- `/areas/:areaSlug` uses `AreaDetailPage` with shared hero, process, FAQ, and quote sections. Unknown slugs show the normal not-found screen.
+- A location's inspection form is prefilled with its area name and resets when navigating to a different location. Submission remains local-only, like the existing quote forms; it does not schedule a visit or send an enquiry.
+- Area copy must not imply a local office, verified completed work, or guaranteed visit availability. Access and scheduling require confirmation for the specific property.
+
+## WhatsApp shortcut
+
+- `src/components/ui/WhatsAppButton.jsx` renders once from `SiteLayout`, so the floating shortcut appears on every page without pages or sections owning their own copy.
+- The destination comes from `whatsappHref` in `src/config/site.js`, which derives `wa.me` from the configured phone number and appends a prefilled greeting. The number is still the placeholder business phone; set the real WhatsApp line before launch, and do not hardcode a second number in components.
+- The link opens in a new tab with `rel="noopener noreferrer"`. Its visible label is decorative (`aria-hidden`); the accessible name comes from the link's own `aria-label`.
+- An `IntersectionObserver` watches the footer's Back to top button and fades the shortcut out while that control is on screen, so the two never compete for the same corner. The observer is optional: without `IntersectionObserver` support the shortcut simply stays visible.

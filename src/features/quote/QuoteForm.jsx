@@ -7,6 +7,7 @@ export default function QuoteForm({
   ariaLabel = 'Solar quote request',
   compact = false,
   serviceTitle,
+  location = '',
 }) {
   const [submitted, setSubmitted] = useState(false);
   const noticeId = useId();
@@ -73,7 +74,13 @@ export default function QuoteForm({
       <div className={compact ? undefined : 'form-row'}>
         <label>
           Location
-          <input name="location" autoComplete="address-level2" required placeholder="Area / city" />
+          <input
+            name="location"
+            autoComplete="address-level2"
+            required
+            placeholder="Area / city"
+            defaultValue={location}
+          />
         </label>
         {!compact && (
           <label>
