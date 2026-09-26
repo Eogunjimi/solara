@@ -22,7 +22,7 @@ export default function HeroSocialProof() {
             ))}
           </span>
         </strong>
-        <small>Trusted by 200 Contractors Nationwide</small>
+        <small>Trusted by 200 Homes &amp; Businesses</small>
       </div>
     </div>
   );

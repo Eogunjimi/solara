@@ -43,7 +43,7 @@ test('centered hero retains its copy and actions, with no overflowing content at
   await expect(hero.getByText('Thoughtful system design')).toBeVisible();
   await expect(hero.getByText('Professional installation')).toBeVisible();
   await expect(hero.getByRole('img', { name: '5 stars' })).toBeVisible();
-  await expect(hero.getByText('Trusted by 200 Contractors Nationwide')).toBeVisible();
+  await expect(hero.getByText('Trusted by 200 Homes & Businesses')).toBeVisible();
   await expect(hero.locator('.hero-background-image')).toBeVisible();
   for (const width of [320, 390, 600, 800, 1000, 1024, 1240, 1280, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
