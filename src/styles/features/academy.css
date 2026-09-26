@@ -1,0 +1,309 @@
+/* Shared editorial cards: the academy index and homepage use the same card. */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.article-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--paper);
+  color: var(--ink);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.article-card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.article-media {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px 10px 0 0;
+  background: var(--green);
+}
+
+.article-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.article-image-arrow {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid color-mix(in srgb, var(--paper) 30%, transparent);
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--gold);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.article-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+}
+
+.article-category {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.article-body h2,
+.article-body h3 {
+  margin: 12px 0;
+  color: var(--ink);
+  font: 800 20px/1.3 var(--display);
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+
+.article-body p {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.article-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: auto;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--gold);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.article-read-more svg {
+  transition: transform 0.25s ease;
+}
+
+.article-card:focus-within {
+  border-color: var(--gold);
+}
+
+@media (hover: hover) {
+  .article-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 12px 28px color-mix(in srgb, var(--ink) 16%, transparent);
+  }
+  .article-card:hover .article-img {
+    transform: scale(1.045);
+  }
+  .article-card:hover .article-image-arrow {
+    background: var(--gold);
+    color: var(--green);
+  }
+  .article-card:hover .article-read-more svg {
+    transform: translateX(3px);
+  }
+}
+
+/* The dark textured backdrop echoes the existing services and project sections. */
+.blog-preview {
+  background-color: var(--green);
+  background-image: var(--section-texture);
+  background-position: center;
+  background-size: cover;
+  color: var(--paper);
+}
+
+.academy-heading {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 44px;
+}
+
+.academy-heading-copy {
+  text-align: center;
+}
+
+.academy-heading h2 {
+  color: var(--paper);
+}
+
+.academy-arrow {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--green);
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+@media (hover: hover) {
+  .academy-arrow:hover {
+    background: var(--paper);
+    transform: translateY(-2px);
+  }
+}
+
+.academy-window {
+  /* Contain the entry motion; allow vertical page scrolling and native pinch zoom. */
+  overflow: hidden;
+  padding: 6px;
+  margin: -6px;
+  border-radius: 14px;
+  touch-action: pan-y pinch-zoom;
+}
+
+.academy-track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  animation: academy-enter 0.4s ease-out both;
+}
+
+@keyframes academy-enter {
+  from {
+    opacity: 0.35;
+    transform: translateX(calc(var(--academy-direction, 1) * 20px));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.academy-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  margin-top: 24px;
+}
+
+.academy-dot {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.academy-dot span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--paper) 45%, var(--green));
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.academy-dot[aria-pressed='true'] span {
+  background: var(--gold);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--gold) 15%, transparent);
+}
+
+.academy-count {
+  margin-left: 12px;
+  color: color-mix(in srgb, var(--paper) 75%, var(--green));
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+.academy-more {
+  text-align: center;
+}
+.academy-more .text-link {
+  margin-top: 12px;
+  color: var(--paper);
+}
+.academy-more .text-link:hover {
+  color: var(--gold);
+}
+
+@media (max-width: 1000px) {
+  .academy-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .academy-track .article-card:nth-child(n + 3) {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .academy-heading {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .academy-heading-copy {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .academy-heading .academy-arrow {
+    grid-row: 2;
+  }
+  .academy-heading .academy-arrow:last-child {
+    grid-column: 3;
+  }
+  .academy-track {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .academy-track .article-card:nth-child(n + 2) {
+    display: none;
+  }
+  .article-body {
+    padding: 22px;
+  }
+  .academy-pagination {
+    margin-top: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .academy-track {
+    animation: none;
+  }
+}

@@ -1,0 +1,22 @@
+:root {
+  --ink: #18201c;
+  --muted: #68716c;
+  --cream: #f4f5ef;
+  --paper: #fbfcf8;
+  --green: #1c352b;
+  --gold: #d6a84d;
+  --line: #d9dfd8;
+  --section-texture:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--green) 92%, transparent),
+      color-mix(in srgb, var(--green) 84%, transparent)
+    ),
+    url('/services-texture.png');
+  --project-surface: #13231d;
+  --project-texture:
+    linear-gradient(90deg, rgba(18, 53, 43, 0.76), rgba(18, 53, 43, 0.66)),
+    url('/services-texture.png');
+  --display: 'Manrope', sans-serif;
+  --body: 'DM Sans', sans-serif;
+}
