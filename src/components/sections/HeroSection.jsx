@@ -27,17 +27,11 @@ export default function HeroSection() {
         <div className="eyebrow light">
           <span /> SOLAR ENERGY, MADE SIMPLE
         </div>
-        <h1>Reliable solar energy for homes &amp; businesses that want more control.</h1>
+        <h1>Reliable solar &amp; inverter for your home or business</h1>
         <p>
           Smart solar and battery systems for homes and businesses in Lagos—designed around how you
           actually use power.
         </p>
-        <div className="hero-actions">
-          <ButtonLink to="#quote">Get my free quote</ButtonLink>
-          <ButtonLink outline to="#services">
-            Explore solutions
-          </ButtonLink>
-        </div>
         <div className="hero-proof">
           <span>
             <CheckCircle2 size={16} /> Thoughtful system design
@@ -47,6 +41,9 @@ export default function HeroSection() {
           </span>
         </div>
         <HeroSocialProof />
+        <div className="hero-actions">
+          <ButtonLink to="#quote">GET MY FREE QUOTE</ButtonLink>
+        </div>
       </div>
       <button
         type="button"

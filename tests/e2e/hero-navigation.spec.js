@@ -35,7 +35,7 @@ test('centered hero retains its copy and actions, with no overflowing content at
   await page.goto('/');
   const hero = page.locator('.hero');
   await expect(hero.getByRole('heading', { level: 1 })).toHaveText(
-    'Reliable solar energy for homes & businesses that want more control.',
+    'Reliable solar & inverter for your home or business',
   );
   await expect(hero.locator('.hero-content > p')).toHaveText(
     'Smart solar and battery systems for homes and businesses in Lagos—designed around how you actually use power.',
@@ -43,7 +43,7 @@ test('centered hero retains its copy and actions, with no overflowing content at
   await expect(hero.getByText('Thoughtful system design')).toBeVisible();
   await expect(hero.getByText('Professional installation')).toBeVisible();
   await expect(hero.getByRole('img', { name: '5 stars' })).toBeVisible();
-  await expect(hero.getByText('Trusted by 200 Homes & Businesses')).toBeVisible();
+  await expect(hero.getByText('Trusted by 50+ Homes & Businesses')).toBeVisible();
   await expect(hero.locator('.hero-background-image')).toBeVisible();
   for (const width of [320, 390, 600, 800, 1000, 1024, 1240, 1280, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
@@ -75,9 +75,16 @@ test('centered hero retains its copy and actions, with no overflowing content at
     expect(Math.abs(center - width / 2)).toBeLessThanOrEqual(1);
     await expect(hero.getByRole('heading', { level: 1 })).toHaveCSS('animation-name', 'none');
   }
-  await hero.getByRole('link', { name: 'Explore solutions' }).click();
-  await expect(page.locator('#services')).toBeInViewport();
-  await hero.getByRole('link', { name: 'Get my free quote' }).click();
+  await expect(hero.getByRole('link', { name: 'Explore solutions' })).toHaveCount(0);
+  const proofBeforeCta = await hero.evaluate((node) => {
+    const proof = node.querySelector('.hero-social-proof');
+    const cta = node.querySelector('.hero-actions');
+    return Boolean(
+      proof && cta && proof.compareDocumentPosition(cta) & Node.DOCUMENT_POSITION_FOLLOWING,
+    );
+  });
+  expect(proofBeforeCta).toBe(true);
+  await hero.getByRole('link', { name: 'GET MY FREE QUOTE' }).click();
   await expect(page.locator('#quote')).toBeInViewport();
 });
 
@@ -87,14 +94,11 @@ test('centered desktop navigation and mobile menu keep all destinations and keyb
   await page.goto('/');
   const header = page.getByRole('banner');
   const nav = page.getByRole('navigation', { name: 'Main navigation' });
-  // The masthead paints the footer green, but slightly transparent so page
-  // content blurs behind the bar as it scrolls. The banner itself stays clear.
+  // The masthead is fully transparent so the page remains visible beneath it.
   const bar = await readPaint(page, '.masthead');
   const footer = await readPaint(page, '.site-footer');
-  expect([bar.r, bar.g, bar.b]).toEqual([footer.r, footer.g, footer.b]);
-  expect(bar.alpha).toBeGreaterThan(0.7);
-  expect(bar.alpha).toBeLessThan(1);
-  expect(bar.blur).toContain('blur');
+  expect(bar.alpha).toBe(0);
+  expect(bar.blur).toBe('none');
   expect(
     await page.locator('.site-header').evaluate((node) => getComputedStyle(node).backgroundColor),
   ).toBe('rgba(0, 0, 0, 0)');
@@ -182,7 +186,9 @@ test('rooftop background animates, can be paused, and respects reduced motion', 
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
   const image = page.locator('.hero-background-image');
-  await expect(image).toHaveCSS('animation-name', 'hero-background-drift');
+  const expectedAnimation =
+    page.viewportSize().width <= 600 ? 'hero-background-drift-mobile' : 'hero-background-drift';
+  await expect(image).toHaveCSS('animation-name', expectedAnimation);
   await expect(image).toHaveCSS('animation-play-state', 'running');
   await expect
     .poll(() =>
@@ -233,6 +239,10 @@ test('the navigation bar stays fitted, pinned, and clear of anchored content', a
   await expect(header).toBeInViewport();
   await page.evaluate(() => window.scrollTo(0, 1500));
   await expect(header).toBeInViewport();
+  await expect(page.locator('.masthead')).toHaveClass(/is-scrolled/);
+  const scrolledBar = await readPaint(page, '.masthead');
+  expect(scrolledBar.alpha).toBeGreaterThan(0.7);
+  expect(scrolledBar.blur).toContain('blur');
   await expect
     .poll(() => header.evaluate((node) => Math.round(node.getBoundingClientRect().top)))
     .toBe(0);

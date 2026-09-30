@@ -17,7 +17,7 @@ function renderRoute(path) {
 
 describe('application routes', () => {
   it.each([
-    ['/', /Reliable solar energy/],
+    ['/', /Reliable solar & inverter/],
     ['/about', /Powering possibility, thoughtfully/],
     ['/services', /The right system starts with listening/],
     ['/areas', /Solar for Lagos/],
@@ -89,7 +89,7 @@ describe('application routes', () => {
     expect(container.querySelector('#process #quote form')).toHaveAccessibleName(
       'Start your solar request',
     );
-    expect(screen.getByRole('link', { name: 'Get my free quote' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'GET MY FREE QUOTE' })).toHaveAttribute(
       'href',
       '/#quote',
     );

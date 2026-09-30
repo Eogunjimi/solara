@@ -49,7 +49,7 @@ test('navigation, browser history, menu, and quote anchor work together', async 
       'false',
     );
   await page.goBack();
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Reliable solar energy');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Reliable solar & inverter');
   if (isMobile) await page.getByRole('button', { name: 'Open menu' }).click();
   await page.getByRole('navigation').getByRole('link', { name: 'Free Site Inspection' }).click();
   await expect(page).toHaveURL(/\/contact#quote$/);
@@ -167,7 +167,7 @@ test('unknown routes show recovery rather than silently rendering the homepage',
   await expect(page.getByRole('heading', { level: 1 })).toContainText('back on track');
   await page.getByRole('link', { name: 'Back to home' }).click();
   await expect(page).toHaveURL('/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Reliable solar energy');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Reliable solar & inverter');
 });
 
 test('FAQ cards follow the brand palette, support keyboard controls, and fit small screens', async ({
@@ -451,7 +451,7 @@ test('Good to Know replaces the bottom quote section and hero quote links reach 
   await expect(page.locator('#faq')).toHaveCount(1);
   await expect(page.locator('main > section').last()).toHaveAttribute('id', 'faq');
   await expect(page.locator('#academy + #faq')).toHaveCount(1);
-  await page.getByRole('link', { name: 'Get my free quote' }).click();
+  await page.getByRole('link', { name: 'GET MY FREE QUOTE' }).click();
   await expect(page).toHaveURL('/#quote');
   await expect(page.locator('#process #quote')).toBeInViewport();
   await expect(page.locator('#quote').getByLabel('Full name')).toBeInViewport();
@@ -612,9 +612,7 @@ test('About Us and Services are separate, responsive sections with working links
   await expect(page).toHaveURL('/contact#quote');
   await expect(page.locator('#quote')).toBeInViewport();
   await page.goto('/');
-  await page.getByRole('link', { name: 'Explore solutions' }).click();
-  await expect(page).toHaveURL('/#services');
-  await expect(services.getByRole('heading', { level: 2 })).toBeInViewport();
+  await expect(page.getByRole('link', { name: 'Explore solutions' })).toHaveCount(0);
   await services.locator('.mosaic-card').first().click();
   await expect(page).toHaveURL('/services/0');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Residential Solar');

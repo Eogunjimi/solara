@@ -8,7 +8,7 @@
 }
 
 .service-detail .page-hero {
-  padding: 76px 0 80px;
+  padding: 150px 0 80px;
   background-color: var(--green);
   background-image: var(--section-texture);
   background-position: center;
@@ -420,6 +420,9 @@
   .service-detail .standard-section--grid,
   .service-detail .past-work--preview {
     padding: 64px 0;
+  }
+  .service-detail .page-hero {
+    padding-top: 112px;
   }
   .service-options-grid,
   .service-related-grid {

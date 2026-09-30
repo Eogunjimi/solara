@@ -1,7 +1,7 @@
 .page-hero {
   background: var(--green);
   color: #fff;
-  padding: 100px 0 105px;
+  padding: 174px 0 105px;
 }
 .page-hero h1 {
   max-width: 720px;
@@ -36,7 +36,7 @@
     height: 350px;
   }
   .page-hero {
-    padding: 75px 0 80px;
+    padding: 123px 0 80px;
   }
 }
 

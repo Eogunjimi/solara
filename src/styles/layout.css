@@ -1,14 +1,19 @@
-/* Sticky masthead: the utility strip scrolls away, the navigation bar stays.
-   The bar keeps the footer green but a little transparent, so page content
-   blurs softly behind it as you scroll. */
+/* The masthead overlays the page so the hero remains visible through it. */
 .masthead {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  inset: 0 0 auto;
   z-index: 60;
+  background: transparent;
+  color: var(--paper);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.masthead.is-scrolled {
   background: rgba(28, 53, 43, 0.75);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
   backdrop-filter: blur(16px) saturate(140%);
-  color: var(--paper);
   border-bottom: 1px solid #ffffff1f;
   box-shadow: 0 16px 38px #04100b40;
 }

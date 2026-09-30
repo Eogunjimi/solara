@@ -30,6 +30,7 @@ const groups = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
   const toggle = useRef(null);
   const header = useRef(null);
   const closeMenu = () => {
@@ -49,16 +50,20 @@ export default function Header() {
       setOpen(false);
       setExpanded(null);
     };
+    const updateScrolled = () => setScrolled(window.scrollY > 16);
+    updateScrolled();
     document.addEventListener('pointerdown', outside);
     breakpoint.addEventListener('change', resize);
+    window.addEventListener('scroll', updateScrolled, { passive: true });
     return () => {
       document.removeEventListener('pointerdown', outside);
       breakpoint.removeEventListener('change', resize);
+      window.removeEventListener('scroll', updateScrolled);
     };
   }, []);
 
   return (
-    <div className="masthead">
+    <div className={`masthead${scrolled ? ' is-scrolled' : ''}`}>
       <div className="topbar">
         <div>Solar made practical for Lagos homes & businesses.</div>
         <a href={`mailto:${siteConfig.email}`}>
