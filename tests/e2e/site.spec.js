@@ -452,7 +452,9 @@ test('Good to Know leads into the separate workflow form and hero quote links re
   await page.getByRole('link', { name: 'Get my free quote' }).click();
   await expect(page).toHaveURL('/#quote');
   await expect(page.locator('#quote')).toBeInViewport();
-  await expect(page.locator('#quote').getByLabel('Full name')).toBeInViewport();
+  await expect(
+    page.locator('#quote').getByRole('heading', { name: 'Ready to take control of your power?' }),
+  ).toBeInViewport();
   await page.reload();
   await expect(page.locator('#quote')).toBeInViewport();
 });
@@ -483,7 +485,9 @@ test('all six FAQ answers open and the solar quote link reaches the homepage for
   );
   await faq.getByRole('link', { name: 'Get a Solar Quote' }).click();
   await expect(page).toHaveURL('/#quote');
-  await expect(page.locator('#quote').getByLabel('Full name')).toBeInViewport();
+  await expect(
+    page.locator('#quote').getByRole('heading', { name: 'Ready to take control of your power?' }),
+  ).toBeInViewport();
 });
 
 test('solar technology wraps all five cards without horizontal scrolling', async ({ page }) => {
