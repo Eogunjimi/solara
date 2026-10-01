@@ -3,9 +3,7 @@ import { useState, useEffect } from 'react';
 import { reviews } from '../../data/reviews.js';
 
 function GoogleMark() {
-  return (
-    <span className="google-mark" role="img" aria-label="Google" />
-  );
+  return <span className="google-mark" role="img" aria-label="Google" />;
 }
 
 export default function ReviewsSection() {
@@ -55,11 +53,7 @@ export default function ReviewsSection() {
                       ★★★★★
                     </span>
                   </div>
-                  <p
-                    className="review-copy"
-                    tabIndex="0"
-                    aria-label={`Review by ${review.author}`}
-                  >
+                  <p className="review-copy" tabIndex="0" aria-label={`Review by ${review.author}`}>
                     “{review.title} {review.body}”
                   </p>
                   <div className="review-author">

@@ -79,7 +79,9 @@
   );
   background-clip: text;
   color: transparent;
-  font: 800 20px/1 Arial, sans-serif;
+  font:
+    800 20px/1 Arial,
+    sans-serif;
 }
 .review-stars {
   color: var(--gold);
