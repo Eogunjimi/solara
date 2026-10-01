@@ -6,7 +6,7 @@ import FounderSection from '../components/sections/FounderSection.jsx';
 import PanelTypesSection from '../components/sections/PanelTypesSection.jsx';
 import StandardsSection from '../components/sections/StandardsSection.jsx';
 import ProjectsSection from '../components/sections/ProjectsSection.jsx';
-import ProcessSection from '../components/sections/ProcessSection.jsx';
+import ProcessSection, { ProcessQuoteSection } from '../components/sections/ProcessSection.jsx';
 import FaqSection from '../components/sections/FaqSection.jsx';
 import AcademyPreview from '../features/academy/AcademyPreview.jsx';
 
@@ -18,12 +18,13 @@ export default function HomePage() {
       <ReviewsSection />
       <FounderSection />
       <ServicesSection />
+      <ProcessSection withForm={false} standalone />
       <PanelTypesSection />
       <StandardsSection />
       <ProjectsSection />
-      <ProcessSection />
       <AcademyPreview />
       <FaqSection />
+      <ProcessQuoteSection />
     </>
   );
 }

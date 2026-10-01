@@ -8,7 +8,7 @@ export default function ServicesSection() {
       <div className="container">
         <div className="services-intro">
           <div>
-            <div className="eyebrow gold">SOLARA SERVICES</div>
+            <div className="eyebrow gold">OUR SERVICES</div>
             <h2 id="services-heading">
               Solar, inverter & electrical <br />
               <i>services you can count on.</i>

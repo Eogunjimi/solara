@@ -29,7 +29,7 @@ export default function ServiceDetailPage() {
 
   return (
     <div className="service-detail" key={service.id}>
-      <PageHero eyebrow="SOLARA SERVICES" title={detail.heroTitle} copy={service.description}>
+      <PageHero eyebrow="OUR SERVICES" title={detail.heroTitle} copy={service.description}>
         <p className="service-tagline">{detail.tagline}</p>
         <div className="service-hero-actions">
           <ButtonLink to="#quote">Get a service quote</ButtonLink>

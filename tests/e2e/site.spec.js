@@ -443,20 +443,21 @@ test('the simplified homepage form validates required fields and accepts an opti
   await expect(form.getByRole('status')).toContainText('has not been sent or saved');
 });
 
-test('Good to Know replaces the bottom quote section and hero quote links reach the workflow form', async ({
+test('Good to Know leads into the separate workflow form and hero quote links reach it', async ({
   page,
 }) => {
   await page.goto('/');
   await expect(page.getByText('LET’S TALK SOLAR', { exact: true })).toHaveCount(0);
   await expect(page.locator('#faq')).toHaveCount(1);
-  await expect(page.locator('main > section').last()).toHaveAttribute('id', 'faq');
+  await expect(page.locator('main > section').last()).toHaveAttribute('id', 'quote');
   await expect(page.locator('#academy + #faq')).toHaveCount(1);
+  await expect(page.locator('#faq + #quote')).toHaveCount(1);
   await page.getByRole('link', { name: 'Get my free quote' }).click();
   await expect(page).toHaveURL('/#quote');
-  await expect(page.locator('#process #quote')).toBeInViewport();
+  await expect(page.locator('#quote')).toBeInViewport();
   await expect(page.locator('#quote').getByLabel('Full name')).toBeInViewport();
   await page.reload();
-  await expect(page.locator('#process #quote')).toBeInViewport();
+  await expect(page.locator('#quote')).toBeInViewport();
 });
 
 test('all six FAQ answers open and the solar quote link reaches the homepage form', async ({

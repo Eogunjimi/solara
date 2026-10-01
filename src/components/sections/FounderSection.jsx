@@ -1,4 +1,3 @@
-import SolarCallToAction from './SolarCallToAction.jsx';
 import { images } from '../../data/images.js';
 
 export default function FounderSection() {
@@ -56,9 +55,6 @@ export default function FounderSection() {
             Your power needs are personal to you, and they&apos;re personal to me too.
           </div>
         </div>
-      </div>
-      <div className="container">
-        <SolarCallToAction />
       </div>
     </section>
   );

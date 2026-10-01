@@ -11,6 +11,15 @@
   gap: clamp(32px, 5vw, 72px);
 }
 
+.process-panel--standalone {
+  display: block;
+}
+
+.process-panel--standalone .process-details {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
 .process-details {
   display: flex;
   flex-direction: column;
@@ -25,6 +34,35 @@
   grid-area: form;
   min-width: 0;
   scroll-margin-top: 32px;
+}
+
+.process-quote {
+  padding: 100px 0;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.process-quote-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(40px, 6vw, 84px);
+  align-items: center;
+}
+
+.process-quote-copy h2 {
+  margin: 0 0 20px;
+  color: var(--green);
+  font-size: clamp(38px, 4.4vw, 58px);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.process-quote-copy > p {
+  max-width: 440px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 .process-form .quote-form {
@@ -208,11 +246,25 @@
     max-width: 680px;
     margin: 0 auto;
   }
+
+  .process-quote-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+    max-width: 760px;
+  }
+
+  .process-quote-copy > p {
+    max-width: 600px;
+  }
 }
 
 @media (max-width: 600px) {
   .process {
     padding: 75px 0;
+  }
+
+  .process-quote {
+    padding: 70px 0;
   }
 
   .process-form .quote-form {

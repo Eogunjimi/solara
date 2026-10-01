@@ -9,78 +9,101 @@ const stepIcons = {
   '04': BadgeCheck,
 };
 
+export function ProcessQuoteSection() {
+  return (
+    <section className="section process-quote" id="quote" aria-labelledby="quote-heading">
+      <div className="container process-quote-grid">
+        <div className="process-quote-copy">
+          <div className="eyebrow gold">GET YOUR FREE SOLAR QUOTE</div>
+          <h2 id="quote-heading">
+            Ready to take control of <i>your power?</i>
+          </h2>
+          <p>
+            Tell us what you need to power, where you&apos;re located and how we can reach you. Our
+            team will review your request and recommend the right next step.
+          </p>
+        </div>
+        <div className="process-form">
+          <QuoteForm ariaLabel="Start your solar request" compact />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function ProcessSection({
   steps = processSteps,
   title,
   description,
   withForm = true,
+  standalone = false,
   listLabel = 'Solar installation steps',
 }) {
   return (
-    <section
-      className={`section process${withForm ? '' : ' process--steps'}`}
-      id="process"
-      aria-labelledby="process-heading"
-    >
-      <div className="container">
-        <div className="process-panel">
-          <div className="process-details">
-            <div className="process-intro">
-              <div className="eyebrow gold process-eyebrow">
-                <span className="process-heading-line" aria-hidden="true" />
-                HOW IT WORKS
-                <span className="process-heading-line" aria-hidden="true" />
+    <>
+      <section
+        className={`section process${withForm ? '' : ' process--steps'}`}
+        id="process"
+        aria-labelledby="process-heading"
+      >
+        <div className="container">
+          <div
+            className={`process-panel${withForm || standalone ? ' process-panel--standalone' : ''}`}
+          >
+            <div className="process-details">
+              <div className="process-intro">
+                <div className="eyebrow gold process-eyebrow">
+                  <span className="process-heading-line" aria-hidden="true" />
+                  HOW IT WORKS
+                  <span className="process-heading-line" aria-hidden="true" />
+                </div>
+                <h2 id="process-heading">
+                  {title ?? (
+                    <>
+                      Simple steps to <br />
+                      <i>reliable solar power.</i>
+                    </>
+                  )}
+                </h2>
+                <p>
+                  {description ??
+                    'From your power needs to a fully installed system, we make going solar simple.'}
+                </p>
               </div>
-              <h2 id="process-heading">
-                {title ?? (
-                  <>
-                    Simple steps to <br />
-                    <i>reliable solar power.</i>
-                  </>
-                )}
-              </h2>
-              <p>
-                {description ??
-                  'From your power needs to a fully installed system, we make going solar simple.'}
-              </p>
-            </div>
 
-            <div className="process-flow">
-              <ol className="process-track" aria-label={listLabel} role="list">
-                {steps.map((step, index) => {
-                  const Icon = stepIcons[step.number] ?? FileText;
-                  const isLast = index === steps.length - 1;
+              <div className="process-flow">
+                <ol className="process-track" aria-label={listLabel} role="list">
+                  {steps.map((step, index) => {
+                    const Icon = stepIcons[step.number] ?? FileText;
+                    const isLast = index === steps.length - 1;
 
-                  return (
-                    <li
-                      className={`process-step${isLast ? ' process-step-complete' : ''}`}
-                      key={step.number}
-                    >
-                      <div className="process-card">
-                        <div className="process-icon" aria-hidden="true">
-                          <Icon size={28} strokeWidth={1.4} />
+                    return (
+                      <li
+                        className={`process-step${isLast ? ' process-step-complete' : ''}`}
+                        key={step.number}
+                      >
+                        <div className="process-card">
+                          <div className="process-icon" aria-hidden="true">
+                            <Icon size={28} strokeWidth={1.4} />
+                          </div>
+                          <div className="process-copy">
+                            <h3>{step.title}</h3>
+                            <p>{step.description}</p>
+                          </div>
+                          <span className="process-number" aria-hidden="true">
+                            {step.number}
+                          </span>
                         </div>
-                        <div className="process-copy">
-                          <h3>{step.title}</h3>
-                          <p>{step.description}</p>
-                        </div>
-                        <span className="process-number" aria-hidden="true">
-                          {step.number}
-                        </span>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ol>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </div>
             </div>
           </div>
-          {withForm && (
-            <div className="process-form" id="quote">
-              <QuoteForm ariaLabel="Start your solar request" compact />
-            </div>
-          )}
         </div>
-      </div>
-    </section>
+      </section>
+      {withForm && <ProcessQuoteSection />}
+    </>
   );
 }
