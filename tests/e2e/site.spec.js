@@ -58,9 +58,13 @@ test('navigation, browser history, menu, and quote anchor work together', async 
   await expect(page.locator('#quote')).toBeInViewport();
 });
 
-test('the connected workflow adapts without overflowing or losing content', async ({ page }) => {
+test('the separate workflow and request form adapt without overflowing or losing content', async ({
+  page,
+}) => {
   await page.goto('/');
   const workflow = page.getByRole('region', { name: /Simple steps to/ });
+  const quote = page.locator('#quote');
+  const form = quote.getByRole('form', { name: 'Start your solar request' });
   await expect(workflow.getByRole('listitem')).toHaveCount(4);
   await expect(workflow.locator('.process-track').getByRole('heading', { level: 3 })).toHaveText([
     'Tell Us What You Need',
@@ -108,20 +112,10 @@ test('the connected workflow adapts without overflowing or losing content', asyn
         true,
       );
     }
-    const form = workflow.getByRole('form', { name: 'Start your solar request' });
     const formBox = await form.boundingBox();
-    const detailsBox = await workflow.locator('.process-details').boundingBox();
-    expect(formBox.x).toBeGreaterThanOrEqual(panel.x);
-    expect(formBox.x + formBox.width).toBeLessThanOrEqual(panel.x + panel.width);
-    if (width > 1000) {
-      expect(formBox.x + formBox.width).toBeLessThan(detailsBox.x);
-      expect(Math.abs(formBox.y - detailsBox.y)).toBeLessThanOrEqual(1);
-      expect(
-        Math.abs(formBox.y + formBox.height - detailsBox.y - detailsBox.height),
-      ).toBeLessThanOrEqual(1);
-    } else {
-      expect(formBox.y).toBeGreaterThan(detailsBox.y + detailsBox.height);
-    }
+    const quoteBox = await quote.boundingBox();
+    expect(formBox.x).toBeGreaterThanOrEqual(quoteBox.x);
+    expect(formBox.x + formBox.width).toBeLessThanOrEqual(quoteBox.x + quoteBox.width);
     for (const control of await form.locator('input, select, textarea, button').all()) {
       const box = await control.boundingBox();
       expect(box.x).toBeGreaterThanOrEqual(formBox.x);
@@ -129,6 +123,9 @@ test('the connected workflow adapts without overflowing or losing content', asyn
       expect(box.height).toBeGreaterThanOrEqual(44);
     }
     expect(await workflow.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(
+      true,
+    );
+    expect(await quote.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(
       true,
     );
   }
@@ -422,8 +419,8 @@ test('the contact quote and academy sections share the same textured background'
 test('the simplified homepage form validates required fields and accepts an optional message', async ({
   page,
 }) => {
-  await page.goto('/#process');
-  const form = page.locator('#process').getByRole('form', { name: 'Start your solar request' });
+  await page.goto('/#quote');
+  const form = page.locator('#quote').getByRole('form', { name: 'Start your solar request' });
   await expect(page.getByRole('form')).toHaveCount(1);
   await expect(form.locator('input, select, textarea')).toHaveCount(4);
   await form.getByRole('button', { name: 'Review my request' }).click();
@@ -590,12 +587,7 @@ test('About Us and Services are separate, responsive sections with working links
   await expect(about.getByRole('heading', { level: 2 })).toHaveCSS('color', paper);
   for (const width of [320, 390, 500, 600, 800, 1024, 1280, 1440]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const locator of [
-      about,
-      services,
-      about.locator('.about-cta'),
-      ...(await services.locator('.mosaic-card').all()),
-    ]) {
+    for (const locator of [about, services, ...(await services.locator('.mosaic-card').all())]) {
       expect(await locator.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(
         true,
       );
@@ -609,10 +601,7 @@ test('About Us and Services are separate, responsive sections with working links
       expect(copyBox.y).toBeGreaterThanOrEqual(cardBox.y);
     }
   }
-  await about.getByRole('link', { name: 'GET YOUR FREE SOLAR QUOTE' }).click();
-  await expect(page).toHaveURL('/contact#quote');
-  await expect(page.locator('#quote')).toBeInViewport();
-  await page.goto('/');
+  await expect(about.getByRole('link', { name: 'GET YOUR FREE SOLAR QUOTE' })).toHaveCount(0);
   await page.getByRole('link', { name: 'Explore solutions' }).click();
   await expect(page).toHaveURL('/#services');
   await expect(services.getByRole('heading', { level: 2 })).toBeInViewport();
