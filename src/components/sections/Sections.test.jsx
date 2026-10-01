@@ -50,11 +50,11 @@ describe('interactive sections', () => {
     const user = userEvent.setup();
     const { container } = renderSection(<ReviewsSection />);
     const featured = () => container.querySelector('.review-card.featured');
-    expect(featured()).toHaveTextContent('Clear guidance from day one.');
+    expect(featured()).toHaveTextContent('The change was immediate.');
     await user.click(screen.getByRole('button', { name: 'Previous review' }));
-    expect(featured()).toHaveTextContent('A practical step forward.');
+    expect(featured()).toHaveTextContent('We use the generator far less now.');
     await user.click(screen.getByRole('button', { name: 'Next review' }));
-    expect(featured()).toHaveTextContent('Clear guidance from day one.');
+    expect(featured()).toHaveTextContent('The change was immediate.');
   });
 
   it('advances reviews automatically and cleans up the interval', () => {
@@ -63,7 +63,7 @@ describe('interactive sections', () => {
       const { container, unmount } = renderSection(<ReviewsSection />);
       act(() => vi.advanceTimersByTime(4500));
       expect(container.querySelector('.review-card.featured')).toHaveTextContent(
-        'Thoughtful work. Real support.',
+        'I finally understand my solar system.',
       );
       unmount();
       expect(vi.getTimerCount()).toBe(0);

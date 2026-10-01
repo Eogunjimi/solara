@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { reviews } from '../../data/reviews.js';
 
+function GoogleMark() {
+  return <span className="google-mark" role="img" aria-label="Google" />;
+}
+
 export default function ReviewsSection() {
   const [active, setActive] = useState(0);
   useEffect(() => {
@@ -13,16 +17,16 @@ export default function ReviewsSection() {
       <div className="container">
         <div className="reviews-head">
           <div>
-            <div className="eyebrow">A BETTER WAY TO POWER LIFE</div>
             <h2>
-              Solar that works
+              What Our Clients
               <br />
-              <i>for your world.</i>
+              <i>Are Saying?</i>
             </h2>
           </div>
           <p className="lead">
-            Power cuts, fuel costs and noisy generators shouldn&apos;t dictate your day. We make the
-            move to solar clear, considered and built to last.
+            We have helped 50+ homeowners and businesses across Lagos enjoy reliable and efficient
+            power solutions, providing quality solar products and professional solar installation
+            services.
           </p>
         </div>
         <div className="review-slider">
@@ -43,15 +47,20 @@ export default function ReviewsSection() {
                   className={'review-card ' + (i === active ? 'featured' : '')}
                   key={review.title}
                 >
-                  <div className="review-stars">★★★★★</div>
-                  <p>
+                  <div className="review-rating" aria-label="5 out of 5 stars on Google">
+                    <GoogleMark />
+                    <span className="review-stars" aria-hidden="true">
+                      ★★★★★
+                    </span>
+                  </div>
+                  <p className="review-copy" tabIndex="0" aria-label={`Review by ${review.author}`}>
                     “{review.title} {review.body}”
                   </p>
                   <div className="review-author">
-                    <span>{review.author[0]}</span>
+                    <img src={review.image} alt="" loading="lazy" />
                     <div>
                       <b>{review.author}</b>
-                      <small>AFEEZTECHSOLAR experience</small>
+                      <small>{review.location}</small>
                     </div>
                   </div>
                 </article>

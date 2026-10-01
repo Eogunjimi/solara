@@ -79,16 +79,17 @@ describe('application routes', () => {
     expect(container.querySelector('#process h2')).toHaveTextContent('Simple steps to');
   });
 
-  it('ends the homepage with one Good to Know section and keeps only the workflow form', () => {
+  it('places the workflow after services and the form after Good to Know', () => {
     const { container } = renderRoute('/');
     const sections = [...container.querySelectorAll('main > section')];
-    expect(sections.slice(-3).map((section) => section.id)).toEqual(['process', 'academy', 'faq']);
+    const sectionIds = sections.map((section) => section.id);
+    expect(sectionIds.indexOf('process')).toBe(sectionIds.indexOf('services') + 1);
+    expect(sectionIds.slice(-3)).toEqual(['academy', 'faq', 'quote']);
     expect(screen.getAllByText('GOOD TO KNOW')).toHaveLength(1);
     expect(screen.queryByText('LET’S TALK SOLAR')).not.toBeInTheDocument();
     expect(screen.getAllByRole('form')).toHaveLength(1);
-    expect(container.querySelector('#process #quote form')).toHaveAccessibleName(
-      'Start your solar request',
-    );
+    expect(container.querySelector('#quote form')).toHaveAccessibleName('Start your solar request');
+    expect(container.querySelector('#process #quote')).not.toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Get my free quote' })).toHaveAttribute(
       'href',
       '/#quote',
@@ -107,10 +108,9 @@ describe('application routes', () => {
     expect(about.nextElementSibling).toBe(serviceSection);
     expect(within(about).getByText('ABOUT US')).toBeInTheDocument();
     expect(within(about).getByText('17+ years')).toBeInTheDocument();
-    expect(within(about).getByRole('link', { name: 'GET YOUR FREE SOLAR QUOTE' })).toHaveAttribute(
-      'href',
-      '/contact#quote',
-    );
+    expect(
+      within(about).queryByRole('link', { name: 'GET YOUR FREE SOLAR QUOTE' }),
+    ).not.toBeInTheDocument();
     expect(within(serviceSection).getAllByRole('link')).toHaveLength(services.length);
     expect(container.querySelector('#services .about-founder')).not.toBeInTheDocument();
     services.forEach((service) => {
