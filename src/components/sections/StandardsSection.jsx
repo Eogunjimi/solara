@@ -1,6 +1,8 @@
-import { ShieldCheck } from 'lucide-react';
+import { PencilRuler, Headset, Package, ShieldCheck, Wrench } from 'lucide-react';
 import { standards } from '../../data/standards.js';
 import { images } from '../../data/images.js';
+
+const pointIcons = [Package, Wrench, PencilRuler, Headset];
 
 export default function StandardsSection({
   points = standards,
@@ -16,7 +18,7 @@ export default function StandardsSection({
     >
       <div className="container standard-grid">
         <div className="standard-copy">
-          <div className="eyebrow">{eyebrow}</div>
+          <div className="eyebrow gold standard-eyebrow">{eyebrow}</div>
           <h2>
             {title ?? (
               <>
@@ -31,15 +33,23 @@ export default function StandardsSection({
               'Good energy is built on good decisions. Here’s what sets our approach apart.'}
           </p>
           <div className="standard-points">
-            {points.map((point, i) => (
-              <div className="standard-point" key={point.title}>
-                <span>0{i + 1}</span>
-                <div>
-                  <h3>{point.title}</h3>
-                  <p>{point.description}</p>
+            {points.map((point, i) => {
+              const Icon = pointIcons[i] ?? ShieldCheck;
+              return (
+                <div className="standard-point" key={point.title}>
+                  <span className="standard-point-icon" aria-hidden="true">
+                    <Icon size={22} strokeWidth={1.6} />
+                  </span>
+                  <div>
+                    <span className="standard-point-index" aria-hidden="true">
+                      0{i + 1}
+                    </span>
+                    <h3>{point.title}</h3>
+                    <p>{point.description}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
         {!grid && (

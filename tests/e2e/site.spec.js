@@ -100,14 +100,22 @@ test('the separate workflow and request form adapt without overflowing or losing
     await expect(workflow).toHaveCSS('padding-bottom', sectionPadding);
     const cards = workflow.locator('.process-card');
     const panel = await workflow.locator('.process-panel').boundingBox();
-    let previousBottom = 0;
+    // Desktop lays the four steps out as a left-to-right timeline; tablet and
+    // phone stack them. Either way each card must follow the previous one.
+    const timeline = width > 1000;
+    let previousEdge = 0;
     for (const card of await cards.all()) {
       await expect(card.getByRole('heading')).toBeVisible();
       const box = await card.boundingBox();
       expect(box.x).toBeGreaterThanOrEqual(panel.x);
       expect(box.x + box.width).toBeLessThanOrEqual(panel.x + panel.width);
-      expect(box.y).toBeGreaterThan(previousBottom);
-      previousBottom = box.y + box.height;
+      if (timeline) {
+        expect(box.x).toBeGreaterThan(previousEdge - 1);
+        previousEdge = box.x + box.width;
+      } else {
+        expect(box.y).toBeGreaterThan(previousEdge);
+        previousEdge = box.y + box.height;
+      }
       expect(await card.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(
         true,
       );
