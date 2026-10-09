@@ -36,35 +36,6 @@
   scroll-margin-top: 32px;
 }
 
-.process-quote {
-  padding: 100px 0;
-  border-top: 1px solid var(--line);
-  background: var(--paper);
-}
-
-.process-quote-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: clamp(40px, 6vw, 84px);
-  align-items: center;
-}
-
-.process-quote-copy h2 {
-  margin: 0 0 20px;
-  color: var(--green);
-  font-size: clamp(38px, 4.4vw, 58px);
-  line-height: 1.04;
-  text-wrap: balance;
-}
-
-.process-quote-copy > p {
-  max-width: 440px;
-  margin: 0;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.65;
-}
-
 .process-form .quote-form {
   flex: 1;
   align-content: space-between;
@@ -246,25 +217,11 @@
     max-width: 680px;
     margin: 0 auto;
   }
-
-  .process-quote-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 36px;
-    max-width: 760px;
-  }
-
-  .process-quote-copy > p {
-    max-width: 600px;
-  }
 }
 
 @media (max-width: 600px) {
   .process {
     padding: 75px 0;
-  }
-
-  .process-quote {
-    padding: 70px 0;
   }
 
   .process-form .quote-form {
@@ -550,5 +507,117 @@
 
   .process--steps .process-card:hover {
     transform: none;
+  }
+}
+
+/* Homepage quote: sits on the shared green `.quote` surface and grid (also used
+   by the contact, service, and area pages). The form stays on the paper card. */
+.process-quote-grid > .process-form {
+  grid-area: auto;
+}
+
+.process-quote-copy h2 {
+  margin: 0 0 22px;
+  color: var(--paper);
+  font-size: clamp(38px, 4.4vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+}
+
+.process-quote-copy h2 i {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.process-quote-copy > p {
+  max-width: 460px;
+  margin: 0 0 32px;
+  color: color-mix(in srgb, var(--paper) 75%, var(--green));
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.quote-steps {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.quote-steps li {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 14px 18px;
+  border: 1px solid color-mix(in srgb, var(--paper) 14%, var(--green));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--paper) 5%, var(--green));
+  color: var(--paper);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.quote-steps li > span {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.quote-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin: 0;
+  padding: 24px 0 0;
+  list-style: none;
+  border-top: 1px solid color-mix(in srgb, var(--paper) 18%, var(--green));
+}
+
+.quote-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--paper);
+  font-size: 14px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  transition: color 0.2s ease;
+}
+
+.quote-contact a svg {
+  flex: 0 0 auto;
+  color: var(--gold);
+}
+
+.quote-contact a:hover,
+.quote-contact a:focus-visible {
+  color: var(--gold);
+}
+
+@media (max-width: 900px) {
+  .process-quote-copy > p {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+  .process-quote-copy h2 {
+    font-size: 40px;
+  }
+
+  .quote-steps li {
+    padding: 12px 14px;
+    font-size: 14px;
   }
 }
