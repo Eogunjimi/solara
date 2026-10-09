@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CheckCircle2, Pause, Phone, Play } from 'lucide-react';
+import { Pause, Phone, Play } from 'lucide-react';
 import ButtonLink from '../ui/ButtonLink.jsx';
 import HeroSocialProof from '../ui/HeroSocialProof.jsx';
 import HeroQuoteForm from '../../features/quote/HeroQuoteForm.jsx';
@@ -35,17 +35,6 @@ export default function HeroSection() {
             Right-sized solar and battery systems, installed and tested by our team, with support
             after handover. Tell us what you need to power and get a clear recommendation.
           </p>
-          <ul className="hero-proof" aria-label="What you get">
-            <li>
-              <CheckCircle2 size={16} aria-hidden="true" /> Personal system design
-            </li>
-            <li>
-              <CheckCircle2 size={16} aria-hidden="true" /> Careful installation
-            </li>
-            <li>
-              <CheckCircle2 size={16} aria-hidden="true" /> Support that stays
-            </li>
-          </ul>
           <HeroSocialProof />
           <div className="hero-actions">
             <ButtonLink outline to="#services">

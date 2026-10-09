@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 import { siteConfig } from '../../config/site.js';
 import { services } from '../../data/services.js';
@@ -61,9 +61,14 @@ export default function Header() {
     <div className="masthead">
       <div className="topbar">
         <div>Solar made practical for Lagos homes & businesses.</div>
-        <a href={`mailto:${siteConfig.email}`}>
-          <Mail size={13} aria-hidden="true" /> {siteConfig.email}
-        </a>
+        <div className="topbar-contact">
+          <a href={siteConfig.phoneHref}>
+            <Phone size={13} aria-hidden="true" /> {siteConfig.phone}
+          </a>
+          <a href={`mailto:${siteConfig.email}`}>
+            <Mail size={13} aria-hidden="true" /> {siteConfig.email}
+          </a>
+        </div>
       </div>
       <header
         ref={header}
@@ -114,7 +119,10 @@ export default function Header() {
             <NavLink to="/contact" onClick={closeMenu}>
               Contact Us
             </NavLink>
-            <a className="nav-phone" href={siteConfig.phoneHref} onClick={closeMenu}>
+            <span className="nav-area">
+              <MapPin size={15} aria-hidden="true" /> {siteConfig.location}
+            </span>
+            <a className="nav-phone-mobile" href={siteConfig.phoneHref} onClick={closeMenu}>
               <Phone size={15} aria-hidden="true" /> {siteConfig.phone}
             </a>
             <ButtonLink to="/contact#quote" onClick={closeMenu}>

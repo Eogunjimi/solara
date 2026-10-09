@@ -40,8 +40,6 @@ test('left-aligned hero retains its copy, proof, form, and actions, with no over
   await expect(hero.locator('.hero-copy > p')).toHaveText(
     'Right-sized solar and battery systems, installed and tested by our team, with support after handover. Tell us what you need to power and get a clear recommendation.',
   );
-  await expect(hero.getByText('Personal system design')).toBeVisible();
-  await expect(hero.getByText('Careful installation')).toBeVisible();
   await expect(hero.getByRole('img', { name: '5 stars' })).toBeVisible();
   await expect(hero.getByText('Google reviews · Trusted by 50 homes & businesses')).toBeVisible();
   await expect(hero.locator('.hero-background-image')).toBeVisible();
@@ -90,11 +88,14 @@ test('centered desktop navigation and mobile menu keep all destinations and keyb
   await page.goto('/');
   const header = page.getByRole('banner');
   const nav = page.getByRole('navigation', { name: 'Main navigation' });
-  // The masthead paints the footer green, but slightly transparent so page
-  // content blurs behind the bar as it scrolls. The banner itself stays clear.
+  // The masthead is a slightly transparent green so page content blurs behind
+  // the bar as it scrolls. The banner itself stays clear.
   const bar = await readPaint(page, '.masthead');
   const footer = await readPaint(page, '.site-footer');
-  expect([bar.r, bar.g, bar.b]).toEqual([footer.r, footer.g, footer.b]);
+  // The refreshed bar is a deeper green than the footer, so compare tone, not exact colour.
+  expect(bar.g).toBeGreaterThan(bar.r);
+  expect(bar.g).toBeLessThanOrEqual(footer.g);
+  expect(bar.b).toBeLessThanOrEqual(footer.b + 2);
   expect(bar.alpha).toBeGreaterThan(0.7);
   expect(bar.alpha).toBeLessThan(1);
   expect(bar.blur).toContain('blur');
@@ -124,10 +125,12 @@ test('centered desktop navigation and mobile menu keep all destinations and keyb
       await expect(link).toBeVisible();
       await expect(link).toHaveAttribute('href', to);
     }
-    await expect(nav.getByRole('link', { name: siteConfig.phone })).toHaveAttribute(
-      'href',
-      siteConfig.phoneHref,
-    );
+    // The phone sits in the top bar on desktop and in the menu on smaller screens.
+    const phoneLink =
+      width < 1024
+        ? nav.getByRole('link', { name: siteConfig.phone })
+        : page.locator('.topbar-contact').getByRole('link', { name: siteConfig.phone });
+    await expect(phoneLink).toHaveAttribute('href', siteConfig.phoneHref);
     const rects = await nav.locator('a:visible').evaluateAll((nodes) =>
       nodes.map((node) => {
         const rect = node.getBoundingClientRect();

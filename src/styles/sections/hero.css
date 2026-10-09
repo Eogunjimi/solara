@@ -337,8 +337,8 @@
   height: 1em;
 }
 
-/* Homepage hero: left-aligned copy beside a three-field quote card. The card is
-   the primary conversion point; the rating and Google proof sit above it. */
+/* Homepage hero: left-aligned copy beside a compact, transparent quote card.
+   The Google rating sits as one arranged pill above the actions. */
 .hero {
   text-align: left;
   min-height: 0;
@@ -384,38 +384,73 @@
   line-height: 1.65;
 }
 
-.hero-proof {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 10px 22px;
-  margin: 26px 0 0;
-  padding: 0;
-  list-style: none;
-  color: #e3ebe5;
-  font-size: 13px;
+/* Google rating: one pill with avatars, the Google mark, and the rating text. */
+.hero .hero-social-proof {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin: 28px 0 0;
+  padding: 8px 18px 8px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(7, 16, 13, 0.38);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  backdrop-filter: blur(12px) saturate(130%);
+  text-align: left;
 }
 
-.hero-proof li {
+.hero .proof-avatars {
+  display: flex;
+}
+
+.hero .proof-avatars i {
+  margin-left: -8px;
+  border-width: 2px;
+}
+
+.hero .proof-avatars i:first-child {
+  margin-left: 0;
+}
+
+.hero .google-mark {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.hero .proof-rating {
+  display: grid;
+  gap: 3px;
+}
+
+.hero .proof-rating strong {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
+  color: var(--paper);
+  font-size: 15px;
+  line-height: 1;
 }
 
-.hero-proof svg {
-  flex-shrink: 0;
-  color: var(--gold);
-}
-
-.hero .hero-social-proof {
-  justify-content: flex-start;
-  margin: 28px 0 0;
+.hero .proof-rating small {
+  white-space: normal;
+  color: rgba(243, 246, 241, 0.78);
+  font-size: 12px;
+  line-height: 1.3;
 }
 
 .hero-actions {
-  justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  margin: 30px 0 0;
+  justify-content: flex-start;
+  gap: 12px 20px;
+  margin: 28px 0 0;
+}
+
+.hero-actions .btn {
+  min-height: 48px;
+  border-radius: 8px;
 }
 
 .hero-call {
@@ -439,57 +474,65 @@
   color: var(--gold);
 }
 
+/* Compact quote card: translucent glass over the photograph, so it stays light
+   and portable instead of a heavy white block. */
 .hero-quote {
   display: grid;
-  gap: 16px;
+  justify-self: end;
+  gap: 14px;
+  width: 100%;
+  max-width: 380px;
   min-width: 0;
-  padding: 30px;
-  border: 1px solid #ffffff1f;
-  border-top: 3px solid var(--gold);
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 2px solid var(--gold);
   border-radius: 18px;
-  background: var(--paper);
-  color: var(--ink);
-  box-shadow: 0 30px 60px -28px #000000cc;
+  background: rgba(7, 16, 13, 0.4);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  backdrop-filter: blur(14px) saturate(130%);
+  color: var(--paper);
+  box-shadow: 0 24px 50px -28px rgba(0, 0, 0, 0.7);
   text-align: left;
 }
 
 .hero-quote-heading h2 {
-  margin: 0 0 6px;
-  color: var(--green);
-  font-size: 24px;
+  margin: 0 0 4px;
+  color: var(--paper);
+  font-size: 20px;
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
 .hero-quote-heading p {
   margin: 0;
-  color: var(--muted);
-  font-size: 14px;
+  color: rgba(243, 246, 241, 0.78);
+  font-size: 13px;
 }
 
 .hero-quote label {
   display: grid;
-  gap: 6px;
-  color: var(--ink);
-  font-size: 13px;
-  font-weight: 700;
+  gap: 5px;
+  color: var(--paper);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .hero-quote input {
   width: 100%;
-  min-height: 48px;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 10px;
-  background: #f6f7f2;
-  color: var(--ink);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--paper);
   font: inherit;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
 }
 
 .hero-quote input::placeholder {
-  color: #7d877f;
+  color: rgba(243, 246, 241, 0.55);
 }
 
 .hero-quote input:focus {
@@ -500,9 +543,9 @@
 
 .hero-quote-submit {
   width: 100%;
-  min-height: 52px;
+  min-height: 46px;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .hero-quote-notice {
@@ -510,14 +553,14 @@
   align-items: flex-start;
   gap: 8px;
   margin: 0;
-  color: var(--muted);
-  font-size: 12px;
+  color: rgba(243, 246, 241, 0.7);
+  font-size: 11px;
   line-height: 1.5;
 }
 
 .hero-quote-notice svg {
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 1px;
   color: var(--gold);
 }
 
@@ -525,21 +568,23 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  padding: 14px 16px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 10px;
-  background: color-mix(in srgb, var(--green) 8%, var(--paper));
-  color: var(--green);
-  font-size: 13px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--paper);
+  font-size: 12px;
   line-height: 1.55;
 }
 
 .hero-quote-status svg {
   flex-shrink: 0;
-  margin-top: 2px;
-  color: var(--green);
+  margin-top: 1px;
+  color: var(--gold);
 }
 
 .hero-quote-status a {
+  color: var(--gold);
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -552,6 +597,11 @@
     padding: 64px 32px 112px;
   }
 
+  .hero-quote {
+    justify-self: start;
+    max-width: 440px;
+  }
+
   .hero-copy > p {
     max-width: 600px;
     font-size: 16px;
@@ -560,25 +610,53 @@
 
 @media (max-width: 600px) {
   .hero-layout {
-    gap: 36px;
-    padding: 44px 20px 104px;
+    gap: 32px;
+    padding: 40px 20px 112px;
   }
 
   .hero h1 {
-    font-size: 38px;
+    font-size: 36px;
+    line-height: 1.08;
   }
 
-  .hero-quote {
-    padding: 22px;
+  .hero-copy > p {
+    font-size: 15px;
+  }
+
+  .hero .hero-social-proof {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-top: 24px;
+    padding: 12px 16px;
+    border-radius: 18px;
+  }
+
+  .hero .proof-rating {
+    flex: 1 1 100%;
+    min-width: 0;
   }
 
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
-    gap: 6px;
+    gap: 10px;
+    margin-top: 24px;
   }
 
   .hero-actions .btn {
     width: 100%;
+  }
+
+  .hero-call {
+    min-height: 44px;
+  }
+
+  .hero-quote {
+    max-width: none;
+    padding: 20px;
   }
 }
