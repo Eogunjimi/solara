@@ -589,3 +589,34 @@
     font-size: 14px;
   }
 }
+
+/* Navbar refresh: a deeper, more opaque brand bar so it reads crisply over
+   photography, a solid gold primary action, and a pill-shaped quote button. */
+.masthead {
+  background: rgba(12, 29, 23, 0.92);
+  border-bottom: 1px solid rgba(214, 168, 77, 0.22);
+  box-shadow: 0 12px 34px rgba(4, 16, 11, 0.38);
+}
+.topbar {
+  background: rgba(4, 16, 11, 0.28);
+}
+.nav-links .btn {
+  min-height: 38px;
+  padding: 9px 15px;
+  letter-spacing: 0.04em;
+  border: 0;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #14231c;
+  font-size: 12px;
+}
+.nav-links .btn:hover {
+  background: #e6bd62;
+  transform: translateY(-1px);
+}
+.nav-links .nav-phone {
+  color: var(--paper);
+}
+.nav-links .nav-phone:hover {
+  color: var(--gold);
+}
