@@ -29,27 +29,27 @@ test.beforeEach(async ({ page }) => {
   );
 });
 
-test('centered hero retains its copy and actions, with no overflowing content at any breakpoint', async ({
+test('left-aligned hero retains its copy, proof, form, and actions, with no overflowing content at any breakpoint', async ({
   page,
 }) => {
   await page.goto('/');
   const hero = page.locator('.hero');
   await expect(hero.getByRole('heading', { level: 1 })).toHaveText(
-    'Reliable solar energy for homes & businesses that want more control.',
+    'Reliable solar installation for Lagos homes & businesses.',
   );
-  await expect(hero.locator('.hero-content > p')).toHaveText(
-    'Smart solar and battery systems for homes and businesses in Lagos—designed around how you actually use power.',
+  await expect(hero.locator('.hero-copy > p')).toHaveText(
+    'Right-sized solar and battery systems, installed and tested by our team, with support after handover. Tell us what you need to power and get a clear recommendation.',
   );
-  await expect(hero.getByText('Thoughtful system design')).toBeVisible();
-  await expect(hero.getByText('Professional installation')).toBeVisible();
+  await expect(hero.getByText('Personal system design')).toBeVisible();
+  await expect(hero.getByText('Careful installation')).toBeVisible();
   await expect(hero.getByRole('img', { name: '5 stars' })).toBeVisible();
-  await expect(hero.getByText('Trusted by 50 Homes & Businesses')).toBeVisible();
+  await expect(hero.getByText('Google reviews · Trusted by 50 homes & businesses')).toBeVisible();
   await expect(hero.locator('.hero-background-image')).toBeVisible();
   for (const width of [320, 390, 600, 800, 1000, 1024, 1240, 1280, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     const boxes = await page
       .locator(
-        '.masthead, .site-header, .hero-content, .hero h1, .hero-content > p, .hero-actions .btn, .hero-proof, .hero-social-proof',
+        '.masthead, .site-header, .hero-content, .hero h1, .hero-copy > p, .hero-actions .btn, .hero-proof, .hero-social-proof',
       )
       .evaluateAll((nodes) =>
         nodes.map((node) => {
@@ -68,17 +68,20 @@ test('centered hero retains its copy and actions, with no overflowing content at
       expect(box.right, `${width}px ${box.name}`).toBeLessThanOrEqual(width + 1);
       expect(box.scroll, `${width}px ${box.name}`).toBeLessThanOrEqual(box.width + 1);
     }
-    const center = await hero.locator('h1').evaluate((node) => {
-      const rect = node.getBoundingClientRect();
-      return (rect.left + rect.right) / 2;
+    const alignment = await hero.evaluate((section) => {
+      const heading = section.querySelector('h1').getBoundingClientRect();
+      const copy = section.querySelector('.hero-copy').getBoundingClientRect();
+      const form = section.querySelector('.hero-quote').getBoundingClientRect();
+      return { headingLeft: heading.left, copyLeft: copy.left, formRight: form.right };
     });
-    expect(Math.abs(center - width / 2)).toBeLessThanOrEqual(1);
+    expect(Math.abs(alignment.headingLeft - alignment.copyLeft)).toBeLessThanOrEqual(1);
+    expect(alignment.formRight).toBeLessThanOrEqual(width + 1);
     await expect(hero.getByRole('heading', { level: 1 })).toHaveCSS('animation-name', 'none');
   }
   await hero.getByRole('link', { name: 'Explore solutions' }).click();
   await expect(page.locator('#services')).toBeInViewport();
-  await hero.getByRole('link', { name: 'Get my free quote' }).click();
-  await expect(page.locator('#quote')).toBeInViewport();
+  await expect(hero.getByRole('form', { name: 'Get your free solar quote' })).toBeVisible();
+  await expect(hero.getByRole('button', { name: 'Get my free quote' })).toBeVisible();
 });
 
 test('centered desktop navigation and mobile menu keep all destinations and keyboard controls', async ({

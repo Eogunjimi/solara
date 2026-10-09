@@ -17,7 +17,7 @@ function renderRoute(path) {
 
 describe('application routes', () => {
   it.each([
-    ['/', /Reliable solar energy/],
+    ['/', /Reliable solar installation/],
     ['/about', /Powering possibility, thoughtfully/],
     ['/services', /The right system starts with listening/],
     ['/areas', /Solar for Lagos/],
@@ -90,12 +90,13 @@ describe('application routes', () => {
     expect(sectionIds.slice(-3)).toEqual(['academy', 'faq', 'quote']);
     expect(screen.getAllByText('GOOD TO KNOW')).toHaveLength(1);
     expect(screen.queryByText('LET’S TALK SOLAR')).not.toBeInTheDocument();
-    expect(screen.getAllByRole('form')).toHaveLength(1);
+    expect(screen.getAllByRole('form')).toHaveLength(2);
+    expect(screen.getByRole('form', { name: 'Get your free solar quote' })).toBeInTheDocument();
     expect(container.querySelector('#quote form')).toHaveAccessibleName('Start your solar request');
     expect(container.querySelector('#process #quote')).not.toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Get my free quote' })).toHaveAttribute(
-      'href',
-      '/#quote',
+    expect(screen.getByRole('button', { name: 'Get my free quote' })).toHaveAttribute(
+      'type',
+      'submit',
     );
   });
 

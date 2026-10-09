@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { CheckCircle2, Pause, Play } from 'lucide-react';
+import { CheckCircle2, Pause, Phone, Play } from 'lucide-react';
 import ButtonLink from '../ui/ButtonLink.jsx';
 import HeroSocialProof from '../ui/HeroSocialProof.jsx';
+import HeroQuoteForm from '../../features/quote/HeroQuoteForm.jsx';
+import { siteConfig } from '../../config/site.js';
 
 export default function HeroSection() {
   const [backgroundPaused, setBackgroundPaused] = useState(false);
@@ -23,30 +25,38 @@ export default function HeroSection() {
       <div className={`hero-background${backgroundPaused ? ' is-paused' : ''}`} aria-hidden="true">
         <div className="hero-background-image" />
       </div>
-      <div className="container hero-content">
-        <div className="eyebrow light">
-          <span /> SOLAR ENERGY, MADE SIMPLE
+      <div className="container hero-content hero-layout">
+        <div className="hero-copy">
+          <div className="eyebrow light">
+            <span /> SOLAR INSTALLATION · LAGOS
+          </div>
+          <h1>Reliable solar installation for Lagos homes &amp; businesses.</h1>
+          <p>
+            Right-sized solar and battery systems, installed and tested by our team, with support
+            after handover. Tell us what you need to power and get a clear recommendation.
+          </p>
+          <ul className="hero-proof" aria-label="What you get">
+            <li>
+              <CheckCircle2 size={16} aria-hidden="true" /> Personal system design
+            </li>
+            <li>
+              <CheckCircle2 size={16} aria-hidden="true" /> Careful installation
+            </li>
+            <li>
+              <CheckCircle2 size={16} aria-hidden="true" /> Support that stays
+            </li>
+          </ul>
+          <HeroSocialProof />
+          <div className="hero-actions">
+            <ButtonLink outline to="#services">
+              Explore solutions
+            </ButtonLink>
+            <a className="hero-call" href={siteConfig.phoneHref}>
+              <Phone size={16} aria-hidden="true" /> Call {siteConfig.phone}
+            </a>
+          </div>
         </div>
-        <h1>Reliable solar energy for homes &amp; businesses that want more control.</h1>
-        <p>
-          Smart solar and battery systems for homes and businesses in Lagos—designed around how you
-          actually use power.
-        </p>
-        <div className="hero-proof">
-          <span>
-            <CheckCircle2 size={16} /> Thoughtful system design
-          </span>
-          <span>
-            <CheckCircle2 size={16} /> Professional installation
-          </span>
-        </div>
-        <HeroSocialProof />
-        <div className="hero-actions">
-          <ButtonLink to="#quote">Get my free quote</ButtonLink>
-          <ButtonLink outline to="#services">
-            Explore solutions
-          </ButtonLink>
-        </div>
+        <HeroQuoteForm />
       </div>
       <button
         type="button"
@@ -61,9 +71,6 @@ export default function HeroSection() {
           <Pause size={17} aria-hidden="true" />
         )}
       </button>
-      <div className="scroll">
-        SCROLL TO EXPLORE <span />
-      </div>
     </section>
   );
 }

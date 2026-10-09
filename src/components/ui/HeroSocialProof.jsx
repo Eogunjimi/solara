@@ -1,6 +1,6 @@
 import { Star } from 'lucide-react';
 
-/** The same existing rating and trust message across the homepage and service heroes. */
+/** The same existing Google rating and trust message across the homepage and service heroes. */
 export default function HeroSocialProof() {
   return (
     <div className="hero-social-proof">
@@ -10,9 +10,7 @@ export default function HeroSocialProof() {
         <i>J</i>
         <i>N</i>
       </div>
-      <b className="facebook-mark" aria-hidden="true">
-        f
-      </b>
+      <span className="google-mark" role="img" aria-label="Google" />
       <div className="proof-rating">
         <strong>
           5.0{' '}
@@ -22,7 +20,7 @@ export default function HeroSocialProof() {
             ))}
           </span>
         </strong>
-        <small>Trusted by 50 Homes &amp; Businesses</small>
+        <small>Google reviews · Trusted by 50 homes &amp; businesses</small>
       </div>
     </div>
   );

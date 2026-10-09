@@ -49,7 +49,9 @@ test('navigation, browser history, menu, and quote anchor work together', async 
       'false',
     );
   await page.goBack();
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Reliable solar energy');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(
+    'Reliable solar installation',
+  );
   if (isMobile) await page.getByRole('button', { name: 'Open menu' }).click();
   await page.getByRole('navigation').getByRole('link', { name: 'Free Site Inspection' }).click();
   await expect(page).toHaveURL(/\/contact#quote$/);
@@ -172,7 +174,9 @@ test('unknown routes show recovery rather than silently rendering the homepage',
   await expect(page.getByRole('heading', { level: 1 })).toContainText('back on track');
   await page.getByRole('link', { name: 'Back to home' }).click();
   await expect(page).toHaveURL('/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Reliable solar energy');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(
+    'Reliable solar installation',
+  );
 });
 
 test('FAQ cards follow the brand palette, support keyboard controls, and fit small screens', async ({
@@ -429,7 +433,7 @@ test('the simplified homepage form validates required fields and accepts an opti
 }) => {
   await page.goto('/#quote');
   const form = page.locator('#quote').getByRole('form', { name: 'Start your solar request' });
-  await expect(page.getByRole('form')).toHaveCount(1);
+  await expect(page.getByRole('form')).toHaveCount(2);
   await expect(form.locator('input, select, textarea')).toHaveCount(4);
   await form.getByRole('button', { name: 'Review my request' }).click();
   await expect(form.getByRole('status')).toHaveCount(0);
@@ -457,14 +461,15 @@ test('Good to Know leads into the separate workflow form and hero quote links re
   await expect(page.locator('main > section').last()).toHaveAttribute('id', 'quote');
   await expect(page.locator('#academy + #faq')).toHaveCount(1);
   await expect(page.locator('#faq + #quote')).toHaveCount(1);
-  await page.getByRole('link', { name: 'Get my free quote' }).click();
-  await expect(page).toHaveURL('/#quote');
-  await expect(page.locator('#quote')).toBeInViewport();
+  const hero = page.locator('.hero');
+  await hero.getByLabel('Full name').fill('Solar Customer');
+  await hero.getByLabel('Phone number').fill('08000000000');
+  await hero.getByLabel('Area in Lagos').fill('Lekki');
+  await hero.getByRole('button', { name: 'Get my free quote' }).click();
+  await expect(hero.getByRole('status')).toContainText('has not sent your details');
   await expect(
     page.locator('#quote').getByRole('heading', { name: 'Ready to take control of your power?' }),
-  ).toBeInViewport();
-  await page.reload();
-  await expect(page.locator('#quote')).toBeInViewport();
+  ).toHaveCount(1);
 });
 
 test('all six FAQ answers open and the solar quote link reaches the homepage form', async ({
