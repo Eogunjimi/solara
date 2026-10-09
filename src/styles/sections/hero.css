@@ -401,6 +401,7 @@
 
 .hero .proof-avatars {
   display: flex;
+  padding-left: 0;
 }
 
 .hero .proof-avatars i {
@@ -626,7 +627,9 @@
   .hero .hero-social-proof {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
     align-items: center;
+    gap: 12px 14px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
