@@ -79,11 +79,14 @@ describe('application routes', () => {
     expect(container.querySelector('#process h2')).toHaveTextContent('Simple steps to');
   });
 
-  it('places the workflow after services and the form after Good to Know', () => {
+  it('leads from services through proof and trust into the workflow, then the form after Good to Know', () => {
     const { container } = renderRoute('/');
     const sections = [...container.querySelectorAll('main > section')];
     const sectionIds = sections.map((section) => section.id);
-    expect(sectionIds.indexOf('process')).toBe(sectionIds.indexOf('services') + 1);
+    const conversionPath = sectionIds.filter((id) =>
+      ['services', 'projects', 'standard', 'process'].includes(id),
+    );
+    expect(conversionPath).toEqual(['services', 'projects', 'standard', 'process']);
     expect(sectionIds.slice(-3)).toEqual(['academy', 'faq', 'quote']);
     expect(screen.getAllByText('GOOD TO KNOW')).toHaveLength(1);
     expect(screen.queryByText('LET’S TALK SOLAR')).not.toBeInTheDocument();

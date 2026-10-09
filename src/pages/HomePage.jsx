@@ -18,10 +18,10 @@ export default function HomePage() {
       <ReviewsSection />
       <FounderSection />
       <ServicesSection />
-      <ProcessSection withForm={false} standalone />
-      <PanelTypesSection />
-      <StandardsSection />
       <ProjectsSection />
+      <StandardsSection />
+      <PanelTypesSection />
+      <ProcessSection withForm={false} standalone />
       <AcademyPreview />
       <FaqSection />
       <ProcessQuoteSection />
