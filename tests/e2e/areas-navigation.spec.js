@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
-import { siteConfig } from '../../src/config/site.js';
 import { serviceAreas } from '../../src/data/serviceAreas.js';
 import { services } from '../../src/data/services.js';
+import { areaPages } from '../../src/data/areaPages.js';
 
 test.beforeEach(async ({ page }) => {
   await page.route(
@@ -47,7 +47,9 @@ test('desktop has full navigation from 1024px, with keyboard, hover and click dr
     );
   await nav.getByRole('link', { name: 'Magodo Phase 2', exact: true }).click();
   await expect(page).toHaveURL('/areas/magodo-phase-2');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Magodo Phase 2');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    areaPages['magodo-phase-2'].heroTitle,
+  );
   for (const width of [1024, 1100, 1240, 1280, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     await expect(page.getByRole('button', { name: 'Open menu' })).toBeHidden();
@@ -75,17 +77,19 @@ test('all ten area pages support direct loads, reloads, local inspection CTAs an
   page,
 }) => {
   for (const area of serviceAreas) {
+    const content = areaPages[area.slug];
     await page.goto(`/areas/${area.slug}`);
-    await expect(page).toHaveTitle(
-      `${area.name} Solar & Electrical Services | ${siteConfig.title}`,
+    await expect(page).toHaveTitle(content.seo.title);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(content.heroTitle);
+    await expect(page.locator('.area-service-grid a')).toHaveCount(
+      content.featuredServiceIds.length,
     );
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-      `Solar & electrical services in ${area.name}.`,
-    );
-    await expect(page.locator('.area-service-grid a')).toHaveCount(7);
+    await expect(page.locator('#projects')).toContainText('Our installation work');
+    await expect(page.locator('.faq-trigger')).toHaveCount(content.faqs.length);
     await page
       .getByRole('main')
-      .getByRole('link', { name: 'Free Site Inspection', exact: true })
+      .getByRole('link', { name: 'Get a free quote', exact: true })
+      .first()
       .click();
     await expect(page.locator('#quote')).toBeInViewport();
     await expect(page.getByLabel('Location', { exact: true })).toHaveValue(area.name);
@@ -110,24 +114,23 @@ test('area directory and local enquiry reset work without claiming to send reque
   const form = page.getByRole('form', { name: 'Site inspection request in Ikoyi' });
   await form.getByLabel('Full name').fill('Test Customer');
   await form.getByLabel('Phone number').fill('08000000000');
-  await form.getByLabel('Email address').fill('test@example.com');
-  await form.getByLabel('Interested in').selectOption('Residential solar');
   await form
-    .getByLabel('Your power needs', { exact: true })
+    .getByLabel('Your power needs (optional)')
     .fill('Please assess our roof and backup requirements.');
   await form.getByRole('button', { name: 'Review my request' }).click();
   await expect(form.getByRole('status')).toContainText('not been sent or saved');
   await page
-    .locator('.area-other-links')
-    .getByRole('link', { name: 'Banana Island', exact: true })
+    .locator('.area-nearby')
+    .getByRole('link', { name: 'Solar and backup power in Banana Island' })
     .click();
+  await expect(page).toHaveURL('/areas/banana-island');
   await expect(page.getByLabel('Location', { exact: true })).toHaveValue('Banana Island');
   await expect(page.getByLabel('Full name')).toHaveValue('');
   await expect(page.getByRole('status')).toHaveCount(0);
   for (const width of [320, 600, 800, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     const rects = await page
-      .locator('.area-page section, .area-service-grid a, .area-focus li, .area-page input')
+      .locator('.area-page section, .area-service-grid a, .service-benefits li, .area-page input')
       .evaluateAll((nodes) =>
         nodes.map((node) => {
           const rect = node.getBoundingClientRect();

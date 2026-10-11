@@ -6,6 +6,7 @@ import { services } from '../data/services.js';
 import { serviceDetails } from '../data/serviceDetails.js';
 import { serviceAreas } from '../data/serviceAreas.js';
 import { policies } from '../data/policies.js';
+import { areaPages } from '../data/areaPages.js';
 import { applyPageMeta } from './pageMeta.js';
 
 /** Keep SPA navigation, hash links, browser history, and document titles in sync. */
@@ -17,6 +18,7 @@ export default function RouteEffects() {
     const service = services.find((item) => path === `/services/${item.id}`);
     const seo = service ? serviceDetails[service.id]?.seo : undefined;
     const area = serviceAreas.find((item) => path === `/areas/${item.slug}`);
+    const areaSeo = area ? areaPages[area.slug]?.seo : undefined;
     const title =
       (area ? `${area.name} Solar & Electrical Services` : undefined) ??
       article?.title ??
@@ -26,8 +28,8 @@ export default function RouteEffects() {
       'Page not found';
     const notFound = title === 'Page not found';
     applyPageMeta({
-      title: seo?.title ?? `${title} | ${siteConfig.title}`,
-      description: seo?.description,
+      title: (seo ?? areaSeo)?.title ?? `${title} | ${siteConfig.title}`,
+      description: (seo ?? areaSeo)?.description,
       path,
       indexable: !notFound,
     });

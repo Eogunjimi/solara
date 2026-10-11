@@ -6,12 +6,15 @@ function GoogleMark() {
   return <span className="google-mark" role="img" aria-label="Google" />;
 }
 
-export default function ReviewsSection() {
+const DEFAULT_LEAD =
+  'We have helped 50+ homeowners and businesses across Lagos enjoy reliable and efficient power solutions, providing quality solar products and professional solar installation services.';
+
+export default function ReviewsSection({ items = reviews, lead = DEFAULT_LEAD }) {
   const [active, setActive] = useState(0);
   useEffect(() => {
-    const timer = setInterval(() => setActive((x) => (x + 1) % reviews.length), 4500);
+    const timer = setInterval(() => setActive((x) => (x + 1) % items.length), 4500);
     return () => clearInterval(timer);
-  }, []);
+  }, [items.length]);
   return (
     <section className="reviews section" id="reviews">
       <div className="container">
@@ -23,16 +26,12 @@ export default function ReviewsSection() {
               <i>Are Saying?</i>
             </h2>
           </div>
-          <p className="lead">
-            We have helped 50+ homeowners and businesses across Lagos enjoy reliable and efficient
-            power solutions, providing quality solar products and professional solar installation
-            services.
-          </p>
+          <p className="lead">{lead}</p>
         </div>
         <div className="review-slider">
           <button
             className="review-arrow left"
-            onClick={() => setActive((active - 1 + reviews.length) % reviews.length)}
+            onClick={() => setActive((active - 1 + items.length) % items.length)}
             aria-label="Previous review"
           >
             ‹
@@ -40,9 +39,9 @@ export default function ReviewsSection() {
           <div className="review-viewport">
             <div
               className="review-track"
-              style={{ transform: `translateX(-${active * (100 / reviews.length)}%)` }}
+              style={{ transform: `translateX(-${active * (100 / items.length)}%)` }}
             >
-              {reviews.map((review, i) => (
+              {items.map((review, i) => (
                 <article
                   className={'review-card ' + (i === active ? 'featured' : '')}
                   key={review.title}
@@ -69,7 +68,7 @@ export default function ReviewsSection() {
           </div>
           <button
             className="review-arrow right"
-            onClick={() => setActive((active + 1) % reviews.length)}
+            onClick={() => setActive((active + 1) % items.length)}
             aria-label="Next review"
           >
             ›

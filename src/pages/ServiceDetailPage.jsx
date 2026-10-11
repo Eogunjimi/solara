@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { services } from '../data/services.js';
@@ -18,22 +17,9 @@ import ServiceCallToAction from '../components/sections/ServiceCallToAction.jsx'
 import QuoteForm from '../features/quote/QuoteForm.jsx';
 import NotFoundPage from './NotFoundPage.jsx';
 import { buildServiceSchema } from './serviceSchema.js';
+import useJsonLd from '../app/useJsonLd.js';
 
 const AREA_LINK_COUNT = 4;
-
-/** Adds one JSON-LD block for the current service page and removes it when the page unmounts. */
-function useServiceSchema(schema) {
-  const json = schema ? JSON.stringify(schema) : null;
-  useEffect(() => {
-    if (!json) return undefined;
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.dataset.page = 'service';
-    script.textContent = json;
-    document.head.appendChild(script);
-    return () => script.remove();
-  }, [json]);
-}
 
 export default function ServiceDetailPage() {
   const { serviceId } = useParams();
@@ -41,7 +27,7 @@ export default function ServiceDetailPage() {
   const detail = serviceDetails[serviceId];
   const schema =
     service && detail ? buildServiceSchema(service, detail, `/services/${service.id}`) : null;
-  useServiceSchema(schema);
+  useJsonLd(schema, 'service');
   if (!service || !detail) return <NotFoundPage />;
 
   const related = services.filter((item) => item.id !== serviceId).slice(0, 3);
