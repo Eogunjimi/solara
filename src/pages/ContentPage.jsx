@@ -38,6 +38,13 @@ export default function ContentPage({ type }) {
         </div>
       </section>
       {type === 'services' && <ServicesSection />}
+      {type === 'projects' && (
+        <section className="section">
+          <div className="container">
+            <ButtonLink to="/projects/gallery">View the project gallery</ButtonLink>
+          </div>
+        </section>
+      )}
       {type === 'projects' && <StandardsSection />}
       {type === 'contact' && <QuoteSection />}
     </>

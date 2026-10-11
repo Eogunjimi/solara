@@ -9,6 +9,7 @@ import NotFoundPage from '../pages/NotFoundPage.jsx';
 import AreasPage from '../pages/AreasPage.jsx';
 import AreaDetailPage from '../pages/AreaDetailPage.jsx';
 import PolicyPage from '../pages/PolicyPage.jsx';
+import ProjectGalleryPage from '../pages/ProjectGalleryPage.jsx';
 
 /** Router provider lives at the entry point so tests can use MemoryRouter. */
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="areas" element={<AreasPage />} />
         <Route path="areas/:areaSlug" element={<AreaDetailPage />} />
         <Route path="projects" element={<ContentPage type="projects" />} />
+        <Route path="projects/gallery" element={<ProjectGalleryPage />} />
         <Route path="contact" element={<ContentPage type="contact" />} />
         <Route path="blog" element={<AcademyPage />} />
         <Route path="blog/:articleId" element={<ArticlePage />} />

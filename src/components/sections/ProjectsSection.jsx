@@ -11,6 +11,7 @@ export default function ProjectsSection({
   description,
   eyebrow = 'OUR PAST WORK',
   carousel = false,
+  gallery = false,
   ctaTo = '/contact#quote',
   ctaLabel = 'Discuss your project',
 }) {
@@ -19,7 +20,7 @@ export default function ProjectsSection({
   const visible = filter === 'ALL' ? items : items.filter((project) => project.category === filter);
   return (
     <section
-      className={`past-work${showFilters ? '' : ' past-work--preview'}`}
+      className={`past-work${showFilters ? '' : ' past-work--preview'}${gallery ? ' past-work--gallery' : ''}`}
       id="projects"
       aria-labelledby={`${id}-heading`}
       aria-roledescription={carousel ? 'carousel' : undefined}
@@ -56,10 +57,18 @@ export default function ProjectsSection({
         {carousel ? (
           <WorkCarousel items={items} ctaTo={ctaTo} ctaLabel={ctaLabel} />
         ) : (
-          <div className="past-grid">
+          <div className={gallery ? 'past-grid past-grid--gallery' : 'past-grid'}>
             {visible.map((project, i) => (
-              <Link className={'past-item past-' + i} to="/projects" key={project.title}>
-                <img src={project.image} alt={project.title} loading="lazy" />
+              <Link
+                className={gallery ? 'past-item past-item--gallery' : 'past-item past-' + i}
+                to={gallery ? '/contact#quote' : '/projects'}
+                key={project.title}
+              >
+                <img
+                  src={project.image}
+                  alt={gallery ? `Illustrative image: ${project.title}` : project.title}
+                  loading="lazy"
+                />
                 <span>
                   {project.title} <ArrowRight size={14} />
                 </span>
