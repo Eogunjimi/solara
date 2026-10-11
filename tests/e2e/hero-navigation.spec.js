@@ -102,7 +102,7 @@ test('centered desktop navigation and mobile menu keep all destinations and keyb
   expect(
     await page.locator('.site-header').evaluate((node) => getComputedStyle(node).backgroundColor),
   ).toBe('rgba(0, 0, 0, 0)');
-  await expect(header.locator('.nav-links--right a')).toHaveCount(3);
+  await expect(header.locator('.nav-links--right a')).toHaveCount(4);
   for (const width of [320, 390, 800, 1024, 1240, 1280, 1440, 1920]) {
     await page.setViewportSize({ width, height: 800 });
     await page.evaluate(() => window.scrollTo(0, 0));

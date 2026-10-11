@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
+import { Menu, X, Phone, Mail } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 import { siteConfig } from '../../config/site.js';
 import { services } from '../../data/services.js';
@@ -119,9 +119,9 @@ export default function Header() {
             <NavLink to="/contact" onClick={closeMenu}>
               Contact Us
             </NavLink>
-            <span className="nav-area">
-              <MapPin size={15} aria-hidden="true" /> {siteConfig.location}
-            </span>
+            <NavLink to="/projects" onClick={closeMenu}>
+              Projects
+            </NavLink>
             <a className="nav-phone-mobile" href={siteConfig.phoneHref} onClick={closeMenu}>
               <Phone size={15} aria-hidden="true" /> {siteConfig.phone}
             </a>

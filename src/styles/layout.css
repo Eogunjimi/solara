@@ -180,21 +180,6 @@
   align-items: center;
   gap: 22px;
 }
-.nav-area {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 0 12px;
-  margin-left: clamp(2px, 0.5vw, 10px);
-  border-left: 1px solid #ffffff1f;
-  color: #cfdad2;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.nav-area svg {
-  flex-shrink: 0;
-  color: var(--gold);
-}
 .nav-links .nav-phone-mobile {
   display: none;
   font-weight: 700;
