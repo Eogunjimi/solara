@@ -9,11 +9,19 @@ import Logo from './Logo.jsx';
 import NavDropdown from './NavDropdown.jsx';
 
 const groups = [
-  { id: 'about', label: 'About Us', to: '/about', items: [{ label: 'Blog', to: '/blog' }] },
+  {
+    id: 'about',
+    label: 'About Us',
+    to: '/about',
+    items: [
+      { label: 'About us', to: '/about' },
+      { label: 'Blog', to: '/blog' },
+    ],
+  },
   {
     id: 'services',
     label: 'Services',
-    to: '/services',
+    to: '/#services',
     items: services.map((service) => ({
       label: service.id === '3' ? 'Electronics Repairs' : service.title,
       to: `/services/${service.id}`,

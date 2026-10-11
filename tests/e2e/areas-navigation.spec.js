@@ -20,7 +20,7 @@ test('desktop has full navigation from 1024px, with keyboard, hover and click dr
   const about = nav.getByRole('button', { name: 'Toggle About Us menu' });
   await about.focus();
   await page.keyboard.press('ArrowDown');
-  await expect(nav.getByRole('link', { name: 'Blog', exact: true })).toBeFocused();
+  await expect(nav.getByRole('link', { name: 'About us', exact: true })).toBeFocused();
   await page.keyboard.press('Escape');
   await expect(about).toBeFocused();
   const serviceTrigger = nav.getByRole('button', { name: 'Toggle Services menu' });

@@ -18,7 +18,7 @@ export default function App() {
       <Route element={<SiteLayout />}>
         <Route index element={<HomePage />} />
         <Route path="about" element={<ContentPage type="about" />} />
-        <Route path="services" element={<ContentPage type="services" />} />
+        <Route path="services" element={<Navigate to="/#services" replace />} />
         <Route path="services/:serviceId" element={<ServiceDetailPage />} />
         <Route path="areas" element={<AreasPage />} />
         <Route path="areas/:areaSlug" element={<AreaDetailPage />} />

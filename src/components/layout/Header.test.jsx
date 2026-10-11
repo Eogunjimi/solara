@@ -22,7 +22,7 @@ describe('desktop and mobile navigation', () => {
     [
       ['Home', '/'],
       ['About Us', '/about'],
-      ['Services', '/services'],
+      ['Services', '/#services'],
       ['Service Areas', '/areas'],
       ['Contact Us', '/contact'],
     ].forEach(([label, to]) =>

@@ -8,7 +8,7 @@ import Logo from './Logo.jsx';
 const exploreLinks = [
   { label: 'Home', to: '/' },
   { label: 'About us', to: '/about' },
-  { label: 'Our services', to: '/services' },
+  { label: 'Our services', to: '/#services' },
   { label: 'Past work', to: '/projects' },
   { label: 'Blog / Academy', to: '/blog' },
   { label: 'Service areas', to: '/areas' },

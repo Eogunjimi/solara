@@ -16,7 +16,6 @@ test('all main routes render without browser errors, including direct reloads', 
   for (const path of [
     '/',
     '/about',
-    '/services',
     '/areas',
     '/projects',
     '/contact',
@@ -228,7 +227,6 @@ test('footer links, quote CTA, legal pages, and back-to-top work', async ({ page
   for (const [name, path, title] of [
     ['Privacy notice', '/privacy', 'Privacy notice'],
     ['Website terms', '/terms', 'Website terms'],
-    ['Our services', '/services', 'The right system starts with listening.'],
   ]) {
     await footer.getByRole('link', { name, exact: true }).click();
     await expect(page).toHaveURL(path);
@@ -626,6 +624,6 @@ test('About Us and Services are separate, responsive sections with working links
   await expect(page).toHaveURL('/services/0');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Residential Solar');
   await page.goto('/services');
-  await expect(page.locator('#about')).toHaveCount(0);
+  await expect(page).toHaveURL('/#services');
   await expect(services).toHaveCount(1);
 });

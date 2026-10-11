@@ -21,8 +21,7 @@ export const whatsappHref = `https://wa.me/${whatsappDigits}?text=${encodeURICom
 
 export const navigation = [
   { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Services', to: '/services' },
+  { label: 'Services', to: '/#services' },
   { label: 'Areas', to: '/areas' },
   { label: 'Past Work', to: '/projects' },
   { label: 'Blog / Academy', to: '/blog' },

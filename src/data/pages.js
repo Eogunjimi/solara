@@ -5,12 +5,6 @@ export const contentPages = {
     description:
       'We help homes and businesses move toward cleaner, more reliable power with practical advice, quality installation and support that stays.',
   },
-  services: {
-    eyebrow: 'OUR SOLUTIONS',
-    title: 'The right system starts with listening.',
-    description:
-      'From residential solar to commercial backup, we design around the way you actually use energy.',
-  },
   areas: {
     eyebrow: 'WHERE WE WORK',
     title: 'Solar for Lagos, built for real life.',

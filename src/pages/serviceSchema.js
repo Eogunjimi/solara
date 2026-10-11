@@ -30,7 +30,7 @@ export function buildServiceSchema(service, detail, path) {
           '@type': 'ListItem',
           position: 2,
           name: 'Services',
-          item: `${siteConfig.siteUrl}/services`,
+          item: `${siteConfig.siteUrl}/#services`,
         },
         {
           '@type': 'ListItem',

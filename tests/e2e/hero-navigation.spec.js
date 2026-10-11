@@ -118,7 +118,7 @@ test('centered desktop navigation and mobile menu keep all destinations and keyb
     for (const { label, to } of [
       { label: 'Home', to: '/' },
       { label: 'About Us', to: '/about' },
-      { label: 'Services', to: '/services' },
+      { label: 'Services', to: '/#services' },
       { label: 'Service Areas', to: '/areas' },
       { label: 'Contact Us', to: '/contact' },
     ]) {

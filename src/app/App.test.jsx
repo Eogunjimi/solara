@@ -19,7 +19,6 @@ describe('application routes', () => {
   it.each([
     ['/', /Reliable solar installation/],
     ['/about', /Powering possibility, thoughtfully/],
-    ['/services', /The right system starts with listening/],
     ['/areas', /Solar for Lagos/],
     ['/projects', /Project gallery/],
     ['/contact', /Let’s talk about your power/],
@@ -126,11 +125,11 @@ describe('application routes', () => {
     });
   });
 
-  it('keeps the founder story out of the Services page', () => {
+  it('redirects the retired /services page to the homepage services section', () => {
     renderRoute('/services');
-    expect(
-      screen.queryByRole('region', { name: 'Built on experience. Driven by better power.' }),
-    ).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+      /Reliable solar installation/,
+    );
     expect(
       screen.getByRole('region', {
         name: 'Solar, inverter & electrical services you can count on.',

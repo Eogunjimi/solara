@@ -49,7 +49,7 @@ export default function ServiceDetailPage() {
             </ButtonLink>
           </div>
           <HeroSocialProof />
-          <Link className="service-back-link" to="/services">
+          <Link className="service-back-link" to="/#services">
             All services <ArrowRight size={14} aria-hidden="true" />
           </Link>
         </PageHero>
@@ -177,7 +177,7 @@ export default function ServiceDetailPage() {
         <div className="container">
           <div className="service-related-heading">
             <h2 id="service-related-heading">More ways we can help.</h2>
-            <Link className="text-link" to="/services">
+            <Link className="text-link" to="/#services">
               All services <ArrowRight size={16} aria-hidden="true" />
             </Link>
           </div>
