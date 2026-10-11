@@ -7,6 +7,9 @@ export const siteConfig = {
   phoneHref: 'tel:+2348106111178',
   email: 'engafeeztech@gmail.com',
   location: 'Lagos, Nigeria',
+  // Production origin, e.g. https://www.example.com (no trailing slash). Canonical links and
+  // breadcrumb structured data are only emitted once this is set.
+  siteUrl: '',
 };
 
 // The WhatsApp shortcut shares the business phone number above.

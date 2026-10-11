@@ -3,8 +3,10 @@ import { useLocation } from 'react-router-dom';
 import { siteConfig, navigation } from '../config/site.js';
 import { articles } from '../data/articles.js';
 import { services } from '../data/services.js';
+import { serviceDetails } from '../data/serviceDetails.js';
 import { serviceAreas } from '../data/serviceAreas.js';
 import { policies } from '../data/policies.js';
+import { applyPageMeta } from './pageMeta.js';
 
 /** Keep SPA navigation, hash links, browser history, and document titles in sync. */
 export default function RouteEffects() {
@@ -13,6 +15,7 @@ export default function RouteEffects() {
     const path = pathname.replace(/\/$/, '') || '/';
     const article = articles.find((item) => path === `/blog/${item.id}`);
     const service = services.find((item) => path === `/services/${item.id}`);
+    const seo = service ? serviceDetails[service.id]?.seo : undefined;
     const area = serviceAreas.find((item) => path === `/areas/${item.slug}`);
     const title =
       (area ? `${area.name} Solar & Electrical Services` : undefined) ??
@@ -21,7 +24,13 @@ export default function RouteEffects() {
       navigation.find((item) => item.to === path)?.label ??
       policies[path.slice(1)]?.title ??
       'Page not found';
-    document.title = `${title} | ${siteConfig.title}`;
+    const notFound = title === 'Page not found';
+    applyPageMeta({
+      title: seo?.title ?? `${title} | ${siteConfig.title}`,
+      description: seo?.description,
+      path,
+      indexable: !notFound,
+    });
     // Include the location key so repeated clicks on the same anchor scroll again.
     // Routes render synchronously; defer scrolling until React has committed the page.
     const frame = requestAnimationFrame(() => {

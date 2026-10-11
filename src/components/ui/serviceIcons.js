@@ -1,0 +1,38 @@
+import {
+  Cable,
+  Cctv,
+  ClipboardCheck,
+  Cpu,
+  Droplets,
+  Eye,
+  Gauge,
+  Hammer,
+  Headset,
+  Layers,
+  Plug,
+  PlugZap,
+  Route,
+  Search,
+  ShieldCheck,
+  Wrench,
+} from 'lucide-react';
+
+// Explicit imports keep the bundle small. Add an icon here before naming it in serviceDetails.js.
+export const serviceIcons = {
+  Cable,
+  Cctv,
+  ClipboardCheck,
+  Cpu,
+  Droplets,
+  Eye,
+  Gauge,
+  Hammer,
+  Headset,
+  Layers,
+  Plug,
+  PlugZap,
+  Route,
+  Search,
+  ShieldCheck,
+  Wrench,
+};

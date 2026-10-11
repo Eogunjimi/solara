@@ -13,6 +13,12 @@
       color-mix(in srgb, var(--green) 84%, transparent)
     ),
     url('/services-texture.png');
+  --service-overlay: linear-gradient(
+    180deg,
+    rgba(12, 29, 23, 0.8) 0%,
+    rgba(12, 29, 23, 0.9) 70%,
+    rgba(12, 29, 23, 0.96) 100%
+  );
   --project-surface: #13231d;
   --project-texture:
     linear-gradient(90deg, rgba(18, 53, 43, 0.76), rgba(18, 53, 43, 0.66)),

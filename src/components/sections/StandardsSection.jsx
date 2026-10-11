@@ -10,6 +10,7 @@ export default function StandardsSection({
   description,
   eyebrow = 'THE SOLARA STANDARD',
   grid = false,
+  icons,
 }) {
   return (
     <section
@@ -34,7 +35,7 @@ export default function StandardsSection({
           </p>
           <div className="standard-points">
             {points.map((point, i) => {
-              const Icon = pointIcons[i] ?? ShieldCheck;
+              const Icon = icons?.[i] ?? pointIcons[i] ?? ShieldCheck;
               return (
                 <div className="standard-point" key={point.title}>
                   <span className="standard-point-icon" aria-hidden="true">

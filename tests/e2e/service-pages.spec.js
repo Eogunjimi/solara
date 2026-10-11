@@ -2,8 +2,7 @@ import { expect, test } from '@playwright/test';
 import { siteConfig } from '../../src/config/site.js';
 import { services } from '../../src/data/services.js';
 import { serviceDetails } from '../../src/data/serviceDetails.js';
-import { faqs } from '../../src/data/faqs.js';
-import { serviceFaqCopy } from '../fixtures/serviceFaqCopy.js';
+import { serviceAreas } from '../../src/data/serviceAreas.js';
 
 test.beforeEach(async ({ page }) => {
   await page.route(
@@ -21,22 +20,29 @@ for (const service of services) {
     await page.goto(`/services/${service.id}`);
     const detail = serviceDetails[service.id];
     const landing = page.locator('.service-detail');
-    await expect(page).toHaveTitle(`${service.title} | ${siteConfig.title}`);
+    await expect(page).toHaveTitle(detail.seo.title);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      'content',
+      detail.seo.description,
+    );
     await expect(landing.getByRole('heading', { level: 1 })).toHaveText(detail.heroTitle);
     await expect(page.getByRole('main')).toHaveCount(1);
     await expect(page.getByRole('contentinfo')).toHaveCount(1);
     await expect(landing.locator('.service-visual')).toHaveCount(0);
-    await expect(landing.locator('.page-hero .hero-social-proof')).toContainText('5.0');
-    await expect(landing.locator('.page-hero').getByRole('img', { name: '5 stars' })).toBeVisible();
-    await expect(landing.locator('.page-hero + .trust-badges')).toHaveCount(1);
+    await expect(landing.locator('.service-hero .hero-social-proof')).toContainText('5.0');
+    await expect(
+      landing.locator('.service-hero').getByRole('img', { name: '5 stars' }),
+    ).toBeVisible();
+    await expect(landing.locator('.service-hero + .trust-badges')).toHaveCount(1);
     await expect(landing.locator('#projects + #reviews')).toHaveCount(1);
-    await expect(landing.locator('#projects').getByRole('heading')).toHaveText('See our work.');
     await expect(landing.locator('.standard-point')).toHaveCount(4);
     await expect(landing.locator('.process-step')).toHaveCount(4);
-    await expect(landing.locator('.service-option')).toHaveCount(3);
-    await expect(landing.locator('.faq-trigger')).toHaveText(faqs.map((item) => item.question));
+    await expect(landing.locator('.service-start li')).toHaveCount(3);
+    await expect(landing.locator('.faq-trigger')).toHaveText(
+      detail.faqs.map((item) => item.question),
+    );
     await expect(landing.getByRole('form')).toHaveCount(1);
-    await expect(landing.getByLabel('Interested in')).toHaveValue(service.title);
+    await expect(landing.locator('.service-quote-for')).toContainText(service.title);
     expect(
       await landing.evaluate((element) => {
         const ids = [...element.querySelectorAll('[id]')].map((node) => node.id);
@@ -44,31 +50,39 @@ for (const service of services) {
       }),
     ).toBe(true);
 
-    await landing.locator('.page-hero').getByRole('link', { name: 'See what’s included' }).click();
-    await expect(page).toHaveURL(`/services/${service.id}#standard`);
-    await expect(landing.locator('#standard')).toBeInViewport();
-    await landing
-      .locator('.service-overview')
-      .getByRole('link', { name: 'See how it works' })
-      .click();
-    await expect(landing.locator('#process')).toBeInViewport();
-    await landing.locator('.service-option').first().getByRole('link').click();
+    await landing.locator('.service-hero').getByRole('link', { name: 'View our projects' }).click();
+    await expect(page).toHaveURL(`/services/${service.id}#projects`);
+    await expect(landing.locator('#projects')).toBeInViewport();
+    await landing.locator('.service-hero').getByRole('link', { name: 'Get a free quote' }).click();
     await expect(page).toHaveURL(`/services/${service.id}#quote`);
     await expect(landing.locator('#quote')).toBeInViewport();
     await page.reload();
     await expect(landing.locator('#quote')).toBeInViewport();
-    await expect(landing.getByLabel('Interested in')).toHaveValue(service.title);
+    await expect(landing.locator('.service-quote-for')).toContainText(service.title);
+
+    await landing.locator('.service-step-cta').getByRole('link').click();
+    await expect(landing.locator('#quote')).toBeInViewport();
 
     const faq = landing.locator('#faq');
-    const trigger = faq.getByRole('button', { name: faqs[1].question });
+    const questionIndex = Math.min(1, detail.faqs.length - 1);
+    const trigger = faq.getByRole('button', { name: detail.faqs[questionIndex].question });
     await trigger.focus();
     await page.keyboard.press('Enter');
     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
-    await expect(faq.getByText(faqs[1].answer)).toBeVisible();
+    await expect(faq.getByText(detail.faqs[questionIndex].answer)).toBeVisible();
     await page.keyboard.press('Space');
-    await expect(faq.getByText(faqs[1].answer)).toBeHidden();
-    await faq.getByRole('link', { name: 'Get a Solar Quote' }).click();
+    await expect(faq.getByText(detail.faqs[questionIndex].answer)).toBeHidden();
+    await faq.getByRole('link', { name: 'Get a free quote' }).click();
     await expect(landing.locator('#quote')).toBeInViewport();
+
+    const area = serviceAreas[0];
+    await landing
+      .locator('.service-area-links')
+      .getByRole('link', { name: new RegExp(area.name) })
+      .click();
+    await expect(page).toHaveURL(`/areas/${area.slug}`);
+    await page.goBack();
+    await expect(page).toHaveURL(`/services/${service.id}#quote`);
 
     for (const width of [320, 390, 600, 800, 1024, 1440]) {
       await page.setViewportSize({ width, height: 900 });
@@ -77,7 +91,7 @@ for (const service of services) {
         const nodes = [
           element,
           ...element.querySelectorAll(
-            'section, .service-option, .standard-point, .process-card, .quote-form, input, select, textarea',
+            'section, .service-quote-card, .standard-point, .process-card, .service-start li, .service-area-links a, input, select, textarea',
           ),
         ];
         return nodes.map((node) => {
@@ -97,17 +111,22 @@ for (const service of services) {
         expect(box.scroll, box.selector).toBeLessThanOrEqual(box.width + 1);
       }
     }
-    for (const image of await landing.locator('.past-item:visible img').all()) {
-      await image.scrollIntoViewIfNeeded();
-      await expect
-        .poll(() => image.evaluate((node) => node.complete && node.naturalWidth > 0))
-        .toBe(true);
-    }
-    await landing.locator('.past-item').first().click();
-    await expect(page).toHaveURL('/projects');
     expect(errors).toEqual([]);
   });
 }
+
+test('service pages publish service structured data and no canonical link until a site URL is configured', async ({
+  page,
+}) => {
+  await page.goto('/services/0');
+  const schema = await page.locator('script[data-page="service"]').textContent();
+  const json = JSON.parse(schema);
+  expect(json['@graph'][0]['@type']).toBe('Service');
+  expect(json['@graph'][0].provider.name).toBe(siteConfig.name);
+  await expect(page.locator('link[rel="canonical"]')).toHaveCount(siteConfig.siteUrl ? 1 : 0);
+  await page.goto('/services/1');
+  await expect(page.locator('script[data-page="service"]')).toHaveCount(1);
+});
 
 test('service enquiry validation, confirmation, and related-service navigation work independently', async ({
   page,
@@ -119,13 +138,8 @@ test('service enquiry validation, confirmation, and related-service navigation w
   await expect(form.getByLabel('Full name')).toBeFocused();
   await form.getByLabel('Full name').fill('Service Customer');
   await form.getByLabel('Phone number').fill('08000000000');
-  await form.getByLabel('Email address').fill('invalid-email');
   await form.getByLabel('Location').fill('Lagos');
   await form.getByLabel('Tell us what you need').fill('Review camera coverage for our shop');
-  await form.getByRole('button', { name: 'Review my request' }).click();
-  await expect(form.getByRole('status')).toHaveCount(0);
-  await expect(form.getByLabel('Email address')).toBeFocused();
-  await form.getByLabel('Email address').fill('test@example.com');
   await form.getByRole('button', { name: 'Review my request' }).click();
   await expect(form.getByRole('status')).toContainText('has not been sent or saved');
   await form.getByLabel('Location').fill('Lagos Island');
@@ -135,71 +149,23 @@ test('service enquiry validation, confirmation, and related-service navigation w
     .getByRole('link', { name: 'Residential Solar', exact: true })
     .click();
   await expect(page).toHaveURL('/services/0');
-  await expect(page.getByLabel('Interested in')).toHaveValue('Residential Solar');
+  await expect(page.locator('.service-quote-for')).toContainText('Residential Solar');
   await expect(page.getByLabel('Full name')).toHaveValue('');
   await expect(page.getByRole('heading', { level: 1 })).toBeInViewport();
 });
 
-test('work carousel supports controls, keyboard, swipe, responsive cards, and a local quote CTA', async ({
+test('the portfolio placeholder links to the quote form until project photos are supplied', async ({
   page,
-  isMobile,
 }) => {
-  await page.goto('/services/0');
+  await page.goto('/services/2');
   const work = page.locator('#projects');
-  const first = work.locator('.work-slide').first();
-  const gallery = work.getByRole('group', { name: 'Project gallery' });
-  await expect(work.locator('.work-slide:visible')).toHaveCount(isMobile ? 1 : 2);
-  await expect(first).toContainText('Explore solar installations');
-  await work.getByRole('button', { name: 'Previous work' }).click();
-  await expect(first).toContainText('Explore panel technology');
-  await expect
-    .poll(() => first.locator('img').evaluate((img) => img.complete && img.naturalWidth > 0))
-    .toBe(true);
-  await work.getByRole('button', { name: 'Next work' }).click();
-  await expect(first).toContainText('Explore solar installations');
-  await work.getByRole('button', { name: 'Show: Explore solar panel systems' }).click();
-  await expect(first).toContainText('Explore solar panel systems');
-  await expect(
-    work.getByRole('button', { name: 'Show: Explore solar panel systems' }),
-  ).toHaveAttribute('aria-pressed', 'true');
-  await gallery.focus();
-  await page.keyboard.press('ArrowRight');
-  await expect(first).toContainText('Explore panel technology');
-  await gallery.dispatchEvent('touchstart', {
-    touches: [{ identifier: 0, clientX: 280, clientY: 80 }],
-  });
-  await gallery.dispatchEvent('touchend', {
-    changedTouches: [{ identifier: 0, clientX: 80, clientY: 85 }],
-  });
-  await expect(first).toContainText('Explore solar installations');
-  await expect(work.locator('.work-track')).toHaveCSS('animation-name', 'none');
-  for (const width of [320, 390, 600, 800, 1024, 1440]) {
-    await page.setViewportSize({ width, height: 900 });
-    await expect(work.locator('.work-slide:visible')).toHaveCount(width <= 700 ? 1 : 2);
-    const buttons = await work.locator('.work-controls button').evaluateAll((nodes) =>
-      nodes.map((node) => {
-        const rect = node.getBoundingClientRect();
-        return { left: rect.left, right: rect.right, width: rect.width, height: rect.height };
-      }),
-    );
-    for (const rect of buttons) {
-      expect(rect.left).toBeGreaterThanOrEqual(0);
-      expect(rect.right).toBeLessThanOrEqual(width);
-      expect(rect.width).toBeGreaterThanOrEqual(44);
-      expect(rect.height).toBeGreaterThanOrEqual(44);
-    }
-  }
-  await work.getByRole('link', { name: 'Discuss your project' }).click();
-  await expect(page).toHaveURL('/services/0#quote');
-  await expect(page.locator('#quote')).toBeInViewport();
-  await expect(page.getByLabel('Interested in')).toHaveValue('Residential Solar');
-  await work.getByRole('link', { name: 'Discuss your project' }).click();
+  await expect(work.getByRole('heading', { level: 2 })).toContainText('Our');
+  await work.getByRole('link', { name: 'Let’s discuss your project' }).click();
+  await expect(page).toHaveURL('/services/2#quote');
   await expect(page.locator('#quote')).toBeInViewport();
 });
 
-test('services reuse homepage rating, animated trust badges, reviews, and FAQ styling', async ({
-  page,
-}) => {
+test('services reuse homepage rating, trust badges, and reviews', async ({ page }) => {
   const sharedSnapshot = () =>
     page.evaluate(() => {
       const headingStyles = (selector) => {
@@ -210,9 +176,7 @@ test('services reuse homepage rating, animated trust badges, reviews, and FAQ st
         proof: document.querySelector('.hero-social-proof').textContent,
         badges: document.querySelector('.trust-badges').textContent,
         reviews: document.querySelector('#reviews').textContent,
-        faq: document.querySelector('#faq').textContent,
         reviewHeading: headingStyles('#reviews h2'),
-        faqHeading: headingStyles('#faq h2'),
       };
     });
   await page.goto('/');
@@ -226,28 +190,3 @@ test('services reuse homepage rating, animated trust badges, reviews, and FAQ st
   await page.getByRole('button', { name: 'Previous review' }).click();
   await expect(featured).toHaveText(firstReview);
 });
-
-for (const service of services) {
-  test(`${service.title}: exact approved FAQ copy and local solar quote link`, async ({ page }) => {
-    await page.goto(`/services/${service.id}#faq`);
-    const section = page.getByRole('region', { name: serviceFaqCopy.heading, exact: true });
-    await expect(section.getByRole('heading', { level: 2 })).toHaveText(serviceFaqCopy.heading);
-    await expect(section.getByRole('button')).toHaveCount(6);
-    for (const item of serviceFaqCopy.items) {
-      const trigger = section.getByRole('button', { name: item.question, exact: true });
-      if ((await trigger.getAttribute('aria-expanded')) !== 'true') await trigger.click();
-      const panel = section.getByRole('region', { name: item.question, exact: true });
-      await expect(panel).toBeVisible();
-      await expect(panel).toHaveText(item.answer);
-      if (item.bold) await expect(panel.locator('strong')).toHaveText(item.bold);
-    }
-    await expect(section.locator('.faq-contact strong')).toHaveText(serviceFaqCopy.closingHeading);
-    await expect(section.locator('.faq-contact p')).toContainText(serviceFaqCopy.closingCopy);
-    const quote = section.getByRole('link', { name: serviceFaqCopy.cta, exact: true });
-    await expect(quote).toHaveAttribute('href', `/services/${service.id}#quote`);
-    await quote.click();
-    await expect(page).toHaveURL(`/services/${service.id}#quote`);
-    await expect(page.locator('#quote')).toBeInViewport();
-    await expect(page.getByLabel('Interested in')).toHaveValue(service.title);
-  });
-}
