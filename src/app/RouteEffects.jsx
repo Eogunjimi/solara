@@ -19,7 +19,7 @@ export default function RouteEffects() {
     const seo = service ? serviceDetails[service.id]?.seo : undefined;
     const area = serviceAreas.find((item) => path === `/areas/${item.slug}`);
     const areaSeo = area ? areaPages[area.slug]?.seo : undefined;
-    const pageTitles = { '/projects/gallery': 'Project gallery' };
+    const pageTitles = { '/projects': 'Project gallery' };
     const title =
       pageTitles[path] ??
       (area ? `${area.name} Solar & Electrical Services` : undefined) ??

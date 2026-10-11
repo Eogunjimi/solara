@@ -17,12 +17,6 @@ export const contentPages = {
     description:
       'Our team serves homes and businesses across Lagos. Get in touch to confirm availability for your area.',
   },
-  projects: {
-    eyebrow: 'PAST WORK',
-    title: 'Good energy, in the real world.',
-    description:
-      'Explore a selection of the systems and power solutions we deliver for homes and businesses.',
-  },
   contact: {
     eyebrow: 'GET IN TOUCH',
     title: 'Let’s talk about your power.',

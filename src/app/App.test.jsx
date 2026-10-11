@@ -21,7 +21,7 @@ describe('application routes', () => {
     ['/about', /Powering possibility, thoughtfully/],
     ['/services', /The right system starts with listening/],
     ['/areas', /Solar for Lagos/],
-    ['/projects', /Good energy, in the real world/],
+    ['/projects', /Project gallery/],
     ['/contact', /Let’s talk about your power/],
     ['/blog', /Clear answers for/],
     ['/privacy', 'Privacy notice'],

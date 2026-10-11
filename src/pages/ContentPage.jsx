@@ -1,7 +1,6 @@
 import PageHero from '../components/ui/PageHero.jsx';
 import ButtonLink from '../components/ui/ButtonLink.jsx';
 import ServicesSection from '../components/sections/ServicesSection.jsx';
-import StandardsSection from '../components/sections/StandardsSection.jsx';
 import QuoteSection from '../features/quote/QuoteSection.jsx';
 import { contentPages } from '../data/pages.js';
 import { images } from '../data/images.js';
@@ -38,14 +37,6 @@ export default function ContentPage({ type }) {
         </div>
       </section>
       {type === 'services' && <ServicesSection />}
-      {type === 'projects' && (
-        <section className="section">
-          <div className="container">
-            <ButtonLink to="/projects/gallery">View the project gallery</ButtonLink>
-          </div>
-        </section>
-      )}
-      {type === 'projects' && <StandardsSection />}
       {type === 'contact' && <QuoteSection />}
     </>
   );

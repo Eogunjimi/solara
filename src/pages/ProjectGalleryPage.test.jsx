@@ -15,7 +15,7 @@ function renderRoute(path) {
 
 describe('Project gallery page', () => {
   it('shows every project at gallery size with an illustrative-image notice', () => {
-    renderRoute('/projects/gallery');
+    renderRoute('/projects');
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Project gallery');
     expect(document.title).toBe(`Project gallery | ${siteConfig.title}`);
     expect(screen.getByRole('note')).toHaveTextContent('illustrative stock images');
@@ -30,18 +30,10 @@ describe('Project gallery page', () => {
   });
 
   it('filters the gallery by category like the homepage widget', async () => {
-    const { container } = renderRoute('/projects/gallery');
+    const { container } = renderRoute('/projects');
     const filter = screen.getByRole('button', { name: 'BACKUP POWER' });
     fireEvent.click(filter);
     const expected = projects.filter((item) => item.category === 'BACKUP POWER').length;
     expect(container.querySelectorAll('.past-item--gallery')).toHaveLength(expected);
-  });
-
-  it('is linked from the projects page', () => {
-    renderRoute('/projects');
-    expect(screen.getByRole('link', { name: 'View the project gallery' })).toHaveAttribute(
-      'href',
-      '/projects/gallery',
-    );
   });
 });

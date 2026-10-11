@@ -22,8 +22,7 @@ export default function App() {
         <Route path="services/:serviceId" element={<ServiceDetailPage />} />
         <Route path="areas" element={<AreasPage />} />
         <Route path="areas/:areaSlug" element={<AreaDetailPage />} />
-        <Route path="projects" element={<ContentPage type="projects" />} />
-        <Route path="projects/gallery" element={<ProjectGalleryPage />} />
+        <Route path="projects" element={<ProjectGalleryPage />} />
         <Route path="contact" element={<ContentPage type="contact" />} />
         <Route path="blog" element={<AcademyPage />} />
         <Route path="blog/:articleId" element={<ArticlePage />} />
