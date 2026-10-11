@@ -19,13 +19,15 @@ const groups = [
       to: `/services/${service.id}`,
     })),
   },
-  {
-    id: 'areas',
-    label: 'Service Areas',
-    to: '/areas',
-    items: serviceAreas.map((area) => ({ label: area.name, to: `/areas/${area.slug}` })),
-  },
 ];
+
+// Service Areas sits in the right-hand group, next to Contact Us.
+const areasGroup = {
+  id: 'areas',
+  label: 'Service Areas',
+  to: '/areas',
+  items: serviceAreas.map((area) => ({ label: area.name, to: `/areas/${area.slug}` })),
+};
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -56,6 +58,17 @@ export default function Header() {
       breakpoint.removeEventListener('change', resize);
     };
   }, []);
+
+  const renderDropdown = (group) => (
+    <NavDropdown
+      key={group.id}
+      {...group}
+      expanded={expanded === group.id}
+      onExpand={() => setExpanded(group.id)}
+      onClose={() => setExpanded((current) => (current === group.id ? null : current))}
+      onNavigate={closeMenu}
+    />
+  );
 
   return (
     <div className="masthead">
@@ -104,24 +117,16 @@ export default function Header() {
             <NavLink to="/" end onClick={closeMenu}>
               Home
             </NavLink>
-            {groups.map((group) => (
-              <NavDropdown
-                key={group.id}
-                {...group}
-                expanded={expanded === group.id}
-                onExpand={() => setExpanded(group.id)}
-                onClose={() => setExpanded((current) => (current === group.id ? null : current))}
-                onNavigate={closeMenu}
-              />
-            ))}
+            {groups.map(renderDropdown)}
+            <NavLink to="/projects" onClick={closeMenu}>
+              Projects
+            </NavLink>
           </div>
           <div className="nav-links nav-links--right">
             <NavLink to="/contact" onClick={closeMenu}>
               Contact Us
             </NavLink>
-            <NavLink to="/projects" onClick={closeMenu}>
-              Projects
-            </NavLink>
+            {renderDropdown(areasGroup)}
             <a className="nav-phone-mobile" href={siteConfig.phoneHref} onClick={closeMenu}>
               <Phone size={15} aria-hidden="true" /> {siteConfig.phone}
             </a>

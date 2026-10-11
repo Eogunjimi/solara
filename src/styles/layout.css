@@ -306,6 +306,13 @@
   grid-template-columns: repeat(2, minmax(196px, 1fr));
   width: min(560px, calc(100vw - 32px));
 }
+@media (min-width: 1024px) {
+  /* The right-hand group sits at the window edge, so its panel opens leftwards. */
+  .nav-links--right .nav-submenu {
+    left: auto;
+    right: 0;
+  }
+}
 .nav-submenu a {
   display: flex;
   align-items: center;
