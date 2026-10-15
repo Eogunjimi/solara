@@ -49,7 +49,7 @@ test('navigation, browser history, menu, and quote anchor work together', async 
     );
   await page.goBack();
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    'Reliable solar installation',
+    'Solar Installation & Engineering Services in Lagos',
   );
   if (isMobile) await page.getByRole('button', { name: 'Open menu' }).click();
   await page.getByRole('navigation').getByRole('link', { name: 'Free Site Inspection' }).click();
@@ -63,7 +63,7 @@ test('the separate workflow and request form adapt without overflowing or losing
   page,
 }) => {
   await page.goto('/');
-  const workflow = page.getByRole('region', { name: /Simple steps to/ });
+  const workflow = page.getByRole('region', { name: /From first call/ });
   const quote = page.locator('#quote');
   const form = quote.getByRole('form', { name: 'Start your solar request' });
   await expect(workflow.getByRole('listitem')).toHaveCount(4);
@@ -146,10 +146,12 @@ test('project filtering and the FAQ work in the browser', async ({ page }) => {
   await expect(page.locator('.past-item')).toHaveCount(3);
   await page.getByRole('button', { name: 'ALL', exact: true }).click();
   await expect(page.locator('.past-item')).toHaveCount(7);
-  const question = page.getByRole('button', { name: 'What size inverter do I need?' });
+  const question = page.getByRole('button', {
+    name: 'Do you provide installation services for homes and businesses?',
+  });
   await question.click();
   await expect(question).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.getByText(/The right inverter depends/)).toBeVisible();
+  await expect(page.getByText(/Yes, we can discuss your power needs/)).toBeVisible();
 });
 
 test('quote form uses native validation and honest local-only confirmation', async ({ page }) => {
@@ -174,7 +176,7 @@ test('unknown routes show recovery rather than silently rendering the homepage',
   await page.getByRole('link', { name: 'Back to home' }).click();
   await expect(page).toHaveURL('/');
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    'Reliable solar installation',
+    'Solar Installation & Engineering Services in Lagos',
   );
 });
 
@@ -184,7 +186,7 @@ test('FAQ cards follow the brand palette, support keyboard controls, and fit sma
   await page.goto('/#faq');
   const faq = page.getByRole('region', { name: 'Frequently Asked Questions', exact: true });
   const cards = faq.locator('.faq-item');
-  await expect(cards).toHaveCount(6);
+  await expect(cards).toHaveCount(8);
   const green = await page
     .locator('#academy')
     .evaluate((element) => getComputedStyle(element).backgroundColor);
@@ -192,16 +194,18 @@ test('FAQ cards follow the brand palette, support keyboard controls, and fit sma
   await expect(cards.first().locator('.lucide-minus')).toBeVisible();
   await expect(cards.nth(1).locator('.lucide-plus')).toBeVisible();
 
-  const second = faq.getByRole('button', { name: 'What size inverter do I need?' });
+  const second = faq.getByRole('button', {
+    name: 'Do you provide installation services for homes and businesses?',
+  });
   await second.focus();
   await page.keyboard.press('Enter');
   await expect(second).toHaveAttribute('aria-expanded', 'true');
   await expect(cards.first().getByRole('button')).toHaveAttribute('aria-expanded', 'false');
   await expect(cards.nth(1)).toHaveCSS('background-color', green);
-  await expect(faq.getByText(/The right inverter depends/)).toBeVisible();
+  await expect(faq.getByText(/Yes, we can discuss your power needs/)).toBeVisible();
   await page.keyboard.press('Space');
   await expect(second).toHaveAttribute('aria-expanded', 'false');
-  await expect(faq.getByText(/The right inverter depends/)).toBeHidden();
+  await expect(faq.getByText(/Yes, we can discuss your power needs/)).toBeHidden();
   await expect(second).toBeFocused();
 
   await cards.first().getByRole('button').click();
@@ -289,7 +293,7 @@ test('academy carousel controls, keyboard navigation, and article destinations w
   page,
 }) => {
   await page.goto('/#academy');
-  const academy = page.getByRole('region', { name: 'Useful thoughts on better energy.' });
+  const academy = page.getByRole('region', { name: 'Practical guides to smarter power.' });
   const firstHeading = () => academy.getByRole('heading', { level: 3 }).first();
   await expect(firstHeading()).toHaveText('How to choose the right solar system for your home');
   await academy.getByRole('button', { name: 'Next academy articles' }).click();
@@ -466,23 +470,25 @@ test('Good to Know leads into the separate workflow form and hero quote links re
   await hero.getByRole('button', { name: 'Get my free quote' }).click();
   await expect(hero.getByRole('status')).toContainText('has not sent your details');
   await expect(
-    page.locator('#quote').getByRole('heading', { name: 'Ready to take control of your power?' }),
+    page.locator('#quote').getByRole('heading', { name: 'Ready to plan your power system?' }),
   ).toHaveCount(1);
 });
 
-test('all six FAQ answers open and the solar quote link reaches the homepage form', async ({
+test('all eight FAQ answers open and the solar quote link reaches the homepage form', async ({
   page,
 }) => {
   await page.goto('/#faq');
   const faq = page.locator('#faq');
   await expect(faq.getByRole('heading', { level: 2 })).toHaveText('Frequently Asked Questions');
   await expect(faq.getByRole('button')).toHaveText([
-    'How much does a complete solar system cost?',
-    'What size inverter do I need?',
-    'Can solar power my AC, fridge and other appliances?',
-    'How long will my battery last?',
-    'Can solar work during the rainy season?',
-    'How does the installation process work?',
+    'What services does AfeezTechSolar Global Services Technology offer?',
+    'Do you provide installation services for homes and businesses?',
+    'Which brands of solar and power products do you work with?',
+    'Do you sell quality products for solar and power installations?',
+    'Can you help me choose the right power solution for my property?',
+    'Do you provide maintenance and support after installation?',
+    'Can you help me upgrade or improve my existing power system?',
+    'How can I request a quote or get started with your services?',
   ]);
   for (const trigger of await faq.getByRole('button').all()) {
     if ((await trigger.getAttribute('aria-expanded')) !== 'true') await trigger.click();
@@ -491,13 +497,11 @@ test('all six FAQ answers open and the solar quote link reaches the homepage for
     await expect(panel).toBeVisible();
     await expect(panel).not.toBeEmpty();
   }
-  await expect(faq.locator('.faq-panel:visible strong')).toContainText(
-    'Tell us what you need → Property assessment',
-  );
+  await expect(faq.locator('.faq-panel:visible')).toContainText('Getting started is simple');
   await faq.getByRole('link', { name: 'Get a Solar Quote' }).click();
   await expect(page).toHaveURL('/#quote');
   await expect(
-    page.locator('#quote').getByRole('heading', { name: 'Ready to take control of your power?' }),
+    page.locator('#quote').getByRole('heading', { name: 'Ready to plan your power system?' }),
   ).toBeInViewport();
 });
 

@@ -8,7 +8,7 @@ export default function StandardsSection({
   points = standards,
   title,
   description,
-  eyebrow = 'THE SOLARA STANDARD',
+  eyebrow = 'WHY TRUST US',
   grid = false,
   icons,
 }) {
@@ -23,15 +23,15 @@ export default function StandardsSection({
           <h2>
             {title ?? (
               <>
-                Why people choose
+                Good decisions,
                 <br />
-                <i>to work with us.</i>
+                <i>built into every system.</i>
               </>
             )}
           </h2>
           <p>
             {description ??
-              'Good energy is built on good decisions. Here’s what sets our approach apart.'}
+              'The principles behind every quote, installation and handover we deliver.'}
           </p>
           <div className="standard-points">
             {points.map((point, i) => {
@@ -41,13 +41,8 @@ export default function StandardsSection({
                   <span className="standard-point-icon" aria-hidden="true">
                     <Icon size={22} strokeWidth={1.6} />
                   </span>
-                  <div>
-                    <span className="standard-point-index" aria-hidden="true">
-                      0{i + 1}
-                    </span>
-                    <h3>{point.title}</h3>
-                    <p>{point.description}</p>
-                  </div>
+                  <h3>{point.title}</h3>
+                  <p>{point.description}</p>
                 </div>
               );
             })}

@@ -7,7 +7,7 @@ function GoogleMark() {
 }
 
 const DEFAULT_LEAD =
-  'We have helped 50+ homeowners and businesses across Lagos enjoy reliable and efficient power solutions, providing quality solar products and professional solar installation services.';
+  "We've helped 50+ clients across Lagos achieve steady, efficient power with a mix of quality solar solutions and professional engineering services — all backed by nearly two decades of hands-on expertise.";
 
 export default function ReviewsSection({ items = reviews, lead = DEFAULT_LEAD }) {
   const [active, setActive] = useState(0);
@@ -21,9 +21,9 @@ export default function ReviewsSection({ items = reviews, lead = DEFAULT_LEAD })
         <div className="reviews-head">
           <div>
             <h2>
-              What Our Clients
+              What Lagos Customers
               <br />
-              <i>Are Saying?</i>
+              <i>Say About Us</i>
             </h2>
           </div>
           <p className="lead">{lead}</p>

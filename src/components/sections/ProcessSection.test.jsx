@@ -8,11 +8,11 @@ import ProcessSection from './ProcessSection.jsx';
 describe('installation workflow', () => {
   it('retains the heading and introduction with four clear steps in order', () => {
     render(<ProcessSection />);
-    const section = screen.getByRole('region', { name: /Simple steps to reliable solar power/ });
+    const section = screen.getByRole('region', { name: /From first call to steady power/ });
     expect(within(section).getByText('HOW IT WORKS')).toBeInTheDocument();
     expect(
       within(section).getByText(
-        'From your power needs to a fully installed system, we make going solar simple.',
+        'You will know what happens next at every stage, from your first message to handover.',
       ),
     ).toBeInTheDocument();
 

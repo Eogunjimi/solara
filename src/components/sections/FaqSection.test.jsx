@@ -9,7 +9,7 @@ describe('FAQ cards', () => {
   it('shows all six supplied questions, answers, and the quote call to action', () => {
     render(<FaqSection />, { wrapper: MemoryRouter });
     const section = screen.getByRole('region', { name: 'Frequently Asked Questions' });
-    expect(within(section).getAllByRole('button')).toHaveLength(6);
+    expect(within(section).getAllByRole('button')).toHaveLength(faqs.length);
     faqs.forEach(({ question, answer }, index) => {
       const trigger = within(section).getByRole('button', { name: question });
       const panel = document.getElementById(trigger.getAttribute('aria-controls'));
@@ -21,10 +21,13 @@ describe('FAQ cards', () => {
     });
     expect(within(section).getByText('GOOD TO KNOW')).toBeInTheDocument();
     expect(within(section).getByText('Still have questions?').tagName).toBe('STRONG');
-    expect(within(section).getByText(faqs[5].answer).tagName).toBe('STRONG');
-    expect(within(section).getByText(faqs[5].answer).parentElement).toHaveTextContent(
-      faqs[5].answerIntro + faqs[5].answer,
-    );
+    const emphasized = faqs.find((faq) => faq.emphasizeAnswer);
+    if (emphasized) {
+      expect(within(section).getByText(emphasized.answer).tagName).toBe('STRONG');
+      expect(within(section).getByText(emphasized.answer).parentElement).toHaveTextContent(
+        (emphasized.answerIntro ?? '') + emphasized.answer,
+      );
+    }
     expect(
       within(section).getByText(
         'Talk to our team and get professional advice based on your actual power needs.',

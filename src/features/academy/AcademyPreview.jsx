@@ -56,8 +56,8 @@ export default function AcademyPreview() {
           <div className="academy-heading-copy">
             <div className="eyebrow gold">FROM THE ACADEMY</div>
             <h2 id={`${id}-heading`}>
-              Useful thoughts on <br />
-              <i>better energy.</i>
+              Practical guides to <br />
+              <i>smarter power.</i>
             </h2>
           </div>
           <button

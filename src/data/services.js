@@ -4,49 +4,49 @@ export const services = [
   {
     title: 'Residential Solar',
     description:
-      'We design and install properly sized solar systems that help homeowners enjoy dependable power for everyday living.',
+      'Properly sized solar systems that give your home dependable power for everyday living.',
     image: images.roof,
     id: '0',
   },
   {
     title: 'Commercial Solar',
     description:
-      'Reliable solar solutions designed to help businesses reduce power interruptions and keep their operations running smoothly.',
+      'Reliable solar solutions that reduce power interruptions and keep your business running smoothly.',
     image: images.install,
     id: '1',
   },
   {
     title: 'Inverter AC & Washing Machine',
     description:
-      'Professional installation and support for inverter ACs and washing machines, helping you get efficient performance from your appliances.',
+      'Professional installation and support for inverter ACs and washing machines, so your appliances perform efficiently.',
     image: images.battery,
     id: '2',
   },
   {
     title: 'Electronic Repairs',
     description:
-      'We diagnose and repair a wide range of electronic equipment with careful attention to quality and lasting performance.',
+      'Careful diagnosis and repair of a wide range of electronic equipment, built for lasting performance.',
     image: images.hero,
     id: '3',
   },
   {
     title: 'Electrical Wiring',
     description:
-      'Safe and professional electrical wiring services for homes, offices, and other properties, built around your specific electrical needs.',
+      'Safe, professional wiring for homes, offices and other properties, built around your electrical needs.',
     image: images.install,
     id: '4',
   },
   {
     title: 'Conduit & Surface Installation',
     description:
-      'Clean and professional conduit and surface installations designed to keep your electrical systems organized, protected, and functional.',
+      'Clean, organised conduit and surface installations that protect and simplify your electrical systems.',
     image: images.roof,
     id: '5',
   },
   {
     title: 'CCTV Installation & Repairs',
     description:
-      'Professional CCTV installation, troubleshooting, and repair services to help you monitor and protect your property.',
+      'Professional CCTV installation, troubleshooting and repair to help you monitor and protect your property.',
     image: images.battery,
     id: '6',
   },

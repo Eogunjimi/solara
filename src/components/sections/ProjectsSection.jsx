@@ -9,7 +9,7 @@ export default function ProjectsSection({
   showFilters = true,
   title,
   description,
-  eyebrow = 'OUR PAST WORK',
+  eyebrow = 'OUR RECENT WORK',
   carousel = false,
   gallery = false,
   ctaTo = '/contact#quote',
@@ -31,9 +31,9 @@ export default function ProjectsSection({
           <h2 id={`${id}-heading`}>
             {title ?? (
               <>
-                Power projects,
+                Power systems built
                 <br />
-                <i>properly delivered.</i>
+                <i>for everyday life.</i>
               </>
             )}
           </h2>

@@ -28,7 +28,7 @@
   color: var(--ink);
   font-size: clamp(36px, 4vw, 50px);
   line-height: 0.98;
-  letter-spacing: -0.07em;
+  letter-spacing: -0.015em;
   text-transform: none;
 }
 

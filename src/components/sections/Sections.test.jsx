@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 import ProjectsSection from './ProjectsSection.jsx';
 import FaqSection from './FaqSection.jsx';
+import { faqs } from '../../data/faqs.js';
 import ReviewsSection from './ReviewsSection.jsx';
 
 function renderSection(section) {
@@ -30,20 +31,16 @@ describe('interactive sections', () => {
   it('opens and closes FAQ answers', async () => {
     const user = userEvent.setup();
     renderSection(<FaqSection />);
-    const first = screen.getByRole('button', {
-      name: 'How much does a complete solar system cost?',
-    });
-    const second = screen.getByRole('button', {
-      name: 'What size inverter do I need?',
-    });
+    const first = screen.getByRole('button', { name: faqs[0].question });
+    const second = screen.getByRole('button', { name: faqs[1].question });
     expect(first).toHaveAttribute('aria-expanded', 'true');
     await user.click(second);
     expect(first).toHaveAttribute('aria-expanded', 'false');
     expect(second).toHaveAttribute('aria-expanded', 'true');
-    expect(screen.getByText(/The right inverter depends/)).toBeVisible();
+    expect(screen.getByText(faqs[1].answer)).toBeVisible();
     await user.click(second);
     expect(second).toHaveAttribute('aria-expanded', 'false');
-    expect(screen.getByText(/The right inverter depends/)).not.toBeVisible();
+    expect(screen.getByText(faqs[1].answer)).not.toBeVisible();
   });
 
   it('cycles reviews in both directions and wraps around', async () => {

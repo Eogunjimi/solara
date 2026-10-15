@@ -352,8 +352,8 @@
   .nav-links .btn {
     position: relative;
     z-index: 0;
-    height: 44px;
-    min-height: 44px;
+    height: 36px;
+    min-height: 36px;
     padding: 0 14px;
     background: transparent;
     border: 0;
@@ -616,14 +616,15 @@
   background: rgba(4, 16, 11, 0.28);
 }
 .nav-links .btn {
-  min-height: 44px;
-  padding: 9px 15px;
+  min-height: 36px;
+  padding: 6px 16px;
   letter-spacing: 0.04em;
   border: 0;
   border-radius: 999px;
   background: var(--gold);
   color: #14231c;
-  font-size: 12px;
+  font-size: 11.5px;
+  line-height: 1.2;
 }
 .nav-links .btn:hover {
   background: #e6bd62;

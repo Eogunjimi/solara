@@ -50,7 +50,7 @@ describe('individual service landing pages', () => {
     expect(detail.heroTitle).toMatch(/Lagos/);
     detail.overview.forEach((paragraph) => expect(screen.getByText(paragraph)).toBeInTheDocument());
     expect(container.querySelector('.service-hero + .trust-badges')).toBeInTheDocument();
-    expect(container.querySelector('.service-hero .hero-social-proof')).toHaveTextContent('5.0');
+    expect(container.querySelector('.service-hero .social-badge')).toHaveTextContent('5.0');
     expect(container.querySelector('#projects')).toBeInTheDocument();
     expect(container.querySelector('#projects + #reviews')).toBeInTheDocument();
     expect(container.querySelector('.service-cta')).toBeInTheDocument();

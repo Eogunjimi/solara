@@ -23,11 +23,11 @@ export function ProcessQuoteSection() {
         <div className="quote-copy process-quote-copy">
           <div className="eyebrow gold">GET YOUR FREE SOLAR QUOTE</div>
           <h2 id="quote-heading">
-            Ready to take control of <i>your power?</i>
+            Ready to plan your <i>power system?</i>
           </h2>
           <p>
-            Tell us what you need to power, where you&apos;re located and how we can reach you. Our
-            team will review your request and recommend the right next step.
+            Tell us what you want to power, where you are and how to reach you. We&apos;ll review
+            your request and recommend the right next step.
           </p>
           <ol className="quote-steps" aria-label="How your request is handled">
             {quoteNextSteps.map((step, index) => (
@@ -95,14 +95,14 @@ export default function ProcessSection({
                 <h2 id="process-heading">
                   {title ?? (
                     <>
-                      Simple steps to <br />
-                      <i>reliable solar power.</i>
+                      From first call <br />
+                      <i>to steady power.</i>
                     </>
                   )}
                 </h2>
                 <p>
                   {description ??
-                    'From your power needs to a fully installed system, we make going solar simple.'}
+                    'You will know what happens next at every stage, from your first message to handover.'}
                 </p>
               </div>
 

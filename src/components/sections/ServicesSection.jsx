@@ -16,8 +16,7 @@ export default function ServicesSection() {
           </div>
           <p>
             Whether you need solar power for your home, a dependable energy solution for your
-            business, or professional electrical and electronic services, we’re here to help you get
-            the job done properly.
+            business, or professional electrical and electronic work, we’ll get it done properly.
           </p>
         </div>
         <div className="service-mosaic">

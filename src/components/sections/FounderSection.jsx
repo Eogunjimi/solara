@@ -1,4 +1,29 @@
+import { Handshake, Sun, Wrench } from 'lucide-react';
 import { images } from '../../data/images.js';
+import ButtonLink from '../ui/ButtonLink.jsx';
+
+const pillars = [
+  {
+    icon: Sun,
+    title: 'My Vision',
+    text: 'I envision bringing reliable power to every home and business across Nigeria, one trusted relationship at a time.',
+  },
+  {
+    icon: Wrench,
+    title: 'My Mission',
+    text: 'My mission is to deliver honest, high-quality energy solutions — from solar to inverters — with the care and expertise our customers deserve.',
+  },
+  {
+    icon: Handshake,
+    title: 'My Promise',
+    text: 'With AfeezTechSolar, you get quality products, expert hands, and a team that genuinely cares about getting it right.',
+  },
+];
+
+const stats = [
+  { value: '17', label: 'Years in solar & inverter technology' },
+  { value: '50+', label: 'Homes and businesses served' },
+];
 
 export default function FounderSection() {
   return (
@@ -23,39 +48,48 @@ export default function FounderSection() {
             <span>Founder, Afeez Tech Solar Global Service Technology</span>
           </div>
         </div>
+
         <div className="founder-copy">
           <div className="eyebrow">ABOUT US</div>
           <h2 id="about-heading">
-            Built on experience. <br />
-            <i>Driven by better power.</i>
+            A Legacy <i>Driven by Purpose</i>
           </h2>
-          <p>
-            <b>I&apos;m Afeez Oriyomi,</b> the founder of Afeez Tech Solar Global Service
-            Technology. And I&apos;ll tell you straight: my passion has never been just about
-            installing solar panels and inverters. It&apos;s about helping Nigerians enjoy
-            dependable electricity and the comfort, freedom, and peace of mind that come with it.
+          <p className="founder-lead">
+            For 17 years, I&apos;ve been committed to one thing: bringing reliable, high-quality
+            power solutions to homes and businesses across Nigeria. I built AfeezTechSolar Global
+            Services Technology on a simple belief — good products, honest service, and the
+            determination to always see things through.
           </p>
+          <dl className="about-stats">
+            {stats.map((stat) => (
+              <div className="about-stat" key={stat.label}>
+                <dt>{stat.label}</dt>
+                <dd>{stat.value}</dd>
+              </div>
+            ))}
+          </dl>
           <p>
-            I&apos;ve spent <b>17+ years</b> working in solar and inverter technology, helping homes
-            and businesses across Nigeria find practical solutions to their power needs. Every
-            project starts with understanding the customer, recommending the right system, and
-            delivering professional installation using quality products.
+            I don&apos;t just install systems — I build relationships. Every customer gets my full
+            commitment: quality products, expert installation, and a guarantee I stand behind.
+            Whether it&apos;s solar power, inverters, batteries, or other energy solutions, I work
+            with trusted brands like Felicity, Deye, C-Worth, Intel, and SMS, because you deserve
+            nothing less than the best.
           </p>
-          <p>
-            And here&apos;s what makes us different: we don&apos;t believe in one-size-fits-all
-            solutions. Every home and business has unique energy needs, and we take the time to
-            understand yours. From installation to routine maintenance, we&apos;re committed to
-            quality workmanship and support you can count on.
-          </p>
-          <p>
-            When you work with us, you&apos;re choosing a team that listens, understands your needs,
-            and cares about helping you enjoy dependable power.
-          </p>
-          <div className="founder-signoff">
-            Your power needs are personal to you, and they&apos;re personal to me too.
-          </div>
+          <ButtonLink to="/contact#quote">Talk to our team</ButtonLink>
         </div>
       </div>
+
+      <ul className="container about-pillars">
+        {pillars.map(({ icon: Icon, title, text }) => (
+          <li className="about-pillar" key={title}>
+            <span className="about-pillar-icon" aria-hidden="true">
+              <Icon size={22} />
+            </span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

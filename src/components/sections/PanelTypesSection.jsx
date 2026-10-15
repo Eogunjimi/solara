@@ -9,7 +9,7 @@ export default function PanelTypesSection() {
           <h2>
             Panel types
             <br />
-            <i>we work with</i>
+            <i>matched to your property</i>
           </h2>
         </div>
         <div className="panel-list">

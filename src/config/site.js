@@ -2,7 +2,8 @@ export const siteConfig = {
   name: 'AFEEZTECHSOLAR',
   title: 'AFEEZTECHSOLAR',
   tagline: 'POWERING POSSIBILITY',
-  description: 'Smart solar and battery systems for homes and businesses in Lagos.',
+  description:
+    'Solar, inverter and engineering services for homes and businesses in Lagos, from first quote to handover.',
   phone: '+234 810 611 1178',
   phoneHref: 'tel:+2348106111178',
   email: 'engafeeztech@gmail.com',

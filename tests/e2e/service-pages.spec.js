@@ -29,7 +29,7 @@ for (const service of services) {
     await expect(page.getByRole('main')).toHaveCount(1);
     await expect(page.getByRole('contentinfo')).toHaveCount(1);
     await expect(landing.locator('.service-visual')).toHaveCount(0);
-    await expect(landing.locator('.service-hero .hero-social-proof')).toContainText('5.0');
+    await expect(landing.locator('.service-hero .social-badge')).toContainText('5.0');
     await expect(
       landing.locator('.service-hero').getByRole('img', { name: '5 stars' }),
     ).toBeVisible();
@@ -173,7 +173,7 @@ test('services reuse homepage rating, trust badges, and reviews', async ({ page 
         return [style.fontSize, style.fontFamily, style.color, style.lineHeight];
       };
       return {
-        proof: document.querySelector('.hero-social-proof').textContent,
+        proof: document.querySelector('.social-badge').textContent,
         badges: document.querySelector('.trust-badges').textContent,
         reviews: document.querySelector('#reviews').textContent,
         reviewHeading: headingStyles('#reviews h2'),

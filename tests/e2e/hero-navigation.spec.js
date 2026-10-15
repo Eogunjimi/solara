@@ -35,10 +35,10 @@ test('left-aligned hero retains its copy, proof, form, and actions, with no over
   await page.goto('/');
   const hero = page.locator('.hero');
   await expect(hero.getByRole('heading', { level: 1 })).toHaveText(
-    'Reliable solar installation for Lagos homes & businesses.',
+    'Solar Installation & Engineering Services in Lagos',
   );
   await expect(hero.locator('.hero-copy > p')).toHaveText(
-    'Right-sized solar and battery systems, installed and tested by our team, with support after handover. Tell us what you need to power and get a clear recommendation.',
+    'Solar and inverter systems, plus engineering services, designed and installed by a team with 17 years of hands-on experience.',
   );
   await expect(hero.getByRole('img', { name: '5 stars' })).toBeVisible();
   await expect(hero.getByText('Google reviews · Trusted by 50 homes & businesses')).toBeVisible();
@@ -47,7 +47,7 @@ test('left-aligned hero retains its copy, proof, form, and actions, with no over
     await page.setViewportSize({ width, height: 900 });
     const boxes = await page
       .locator(
-        '.masthead, .site-header, .hero-content, .hero h1, .hero-copy > p, .hero-actions .btn, .hero-proof, .hero-social-proof',
+        '.masthead, .site-header, .hero-content, .hero h1, .hero-copy > p, .hero-actions .btn, .hero-proof, .social-badge',
       )
       .evaluateAll((nodes) =>
         nodes.map((node) => {

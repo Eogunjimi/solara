@@ -17,7 +17,7 @@
 .area-page h2 {
   font-size: clamp(30px, 3.5vw, 48px);
   line-height: 1.15;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.015em;
   text-wrap: balance;
 }
 .area-page .lead {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pause, Phone, Play } from 'lucide-react';
+import { Headset, Pause, Phone, Play, ShieldCheck, Wrench } from 'lucide-react';
 import ButtonLink from '../ui/ButtonLink.jsx';
 import HeroSocialProof from '../ui/HeroSocialProof.jsx';
 import HeroQuoteForm from '../../features/quote/HeroQuoteForm.jsx';
@@ -28,13 +28,33 @@ export default function HeroSection() {
       <div className="container hero-content hero-layout">
         <div className="hero-copy">
           <div className="eyebrow light">
-            <span /> SOLAR INSTALLATION · LAGOS
+            <span /> ENGINEERING SERVICES · LAGOS
           </div>
-          <h1>Reliable solar installation for Lagos homes &amp; businesses.</h1>
+          <h1>Solar Installation & Engineering Services in Lagos</h1>
           <p>
-            Right-sized solar and battery systems, installed and tested by our team, with support
-            after handover. Tell us what you need to power and get a clear recommendation.
+            Solar and inverter systems, plus engineering services, designed and installed by a team
+            with 17 years of hands-on experience.
           </p>
+          <ul className="hero-features">
+            <li className="hero-feature">
+              <span aria-hidden="true">
+                <ShieldCheck size={17} />
+              </span>
+              Assessed before we quote
+            </li>
+            <li className="hero-feature">
+              <span aria-hidden="true">
+                <Wrench size={17} />
+              </span>
+              Installed and tested
+            </li>
+            <li className="hero-feature">
+              <span aria-hidden="true">
+                <Headset size={17} />
+              </span>
+              Support after handover
+            </li>
+          </ul>
           <HeroSocialProof />
           <div className="hero-actions">
             <ButtonLink outline to="#services">

@@ -17,7 +17,7 @@ function renderRoute(path) {
 
 describe('application routes', () => {
   it.each([
-    ['/', /Reliable solar installation/],
+    ['/', /Solar Installation & Engineering Services in Lagos/],
     ['/about', /Powering possibility, thoughtfully/],
     ['/areas', /Solar for Lagos/],
     ['/projects', /Project gallery/],
@@ -75,7 +75,7 @@ describe('application routes', () => {
     const { container } = renderRoute('/');
     const ids = [...container.querySelectorAll('[id]')].map((node) => node.id);
     expect(new Set(ids).size).toBe(ids.length);
-    expect(container.querySelector('#process h2')).toHaveTextContent('Simple steps to');
+    expect(container.querySelector('#process h2')).toHaveTextContent('From first call');
   });
 
   it('leads from services through proof and trust into the workflow, then the form after Good to Know', () => {
@@ -102,7 +102,7 @@ describe('application routes', () => {
   it('renders About Us and Services as separate homepage sections', () => {
     const { container } = renderRoute('/');
     const about = screen.getByRole('region', {
-      name: 'Built on experience. Driven by better power.',
+      name: 'A Legacy Driven by Purpose',
     });
     const serviceSection = screen.getByRole('region', {
       name: 'Solar, inverter & electrical services you can count on.',
@@ -110,7 +110,7 @@ describe('application routes', () => {
     expect(about.parentElement).toBe(screen.getByRole('main'));
     expect(about.nextElementSibling).toBe(serviceSection);
     expect(within(about).getByText('ABOUT US')).toBeInTheDocument();
-    expect(within(about).getByText('17+ years')).toBeInTheDocument();
+    expect(within(about).getByText(/For 17 years/)).toBeInTheDocument();
     expect(
       within(about).queryByRole('link', { name: 'GET YOUR FREE SOLAR QUOTE' }),
     ).not.toBeInTheDocument();
@@ -128,7 +128,7 @@ describe('application routes', () => {
   it('redirects the retired /services page to the homepage services section', () => {
     renderRoute('/services');
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      /Reliable solar installation/,
+      /Solar Installation & Engineering Services in Lagos/,
     );
     expect(
       screen.getByRole('region', {

@@ -1,34 +1,42 @@
 export const faqs = [
   {
-    question: 'How much does a complete solar system cost?',
+    question: 'What services does AfeezTechSolar Global Services Technology offer?',
     answer:
-      'It depends on your energy needs, the appliances you want to power, battery capacity, and inverter size. We assess your requirements and recommend a system that fits your property and budget.',
+      'We provide solar energy solutions, inverter installations, and related power system services. We also offer additional services to meet our customers’ needs. Contact us to discuss your specific project.',
   },
   {
-    question: 'What size inverter do I need?',
+    question: 'Do you provide installation services for homes and businesses?',
     answer:
-      'The right inverter depends on the appliances you need to run and your total power consumption. We assess your needs and recommend the appropriate capacity for your home or business.',
+      'Yes, we can discuss your power needs and recommend a suitable solution for your home, office, shop, or business based on your requirements.',
   },
   {
-    question: 'Can solar power my AC, fridge and other appliances?',
+    question: 'Which brands of solar and power products do you work with?',
     answer:
-      'Yes. We design solar and inverter systems that can power essential appliances including ACs, refrigerators, freezers, TVs, fans, lighting and pumping machines, depending on the system capacity.',
+      'We work with products from brands including Felicity, Deye, Cworth, Intel, and SMS. Contact us to confirm product availability and find the right option for your needs.',
   },
   {
-    question: 'How long will my battery last?',
+    question: 'Do you sell quality products for solar and power installations?',
     answer:
-      "Battery runtime depends on its capacity and the amount of power you're using. We'll help you choose a battery system based on how much backup power you need.",
+      'Yes, we prioritize quality products and good service. Our goal is to provide dependable solutions that meet your power needs and deliver lasting value.',
   },
   {
-    question: 'Can solar work during the rainy season?',
+    question: 'Can you help me choose the right power solution for my property?',
     answer:
-      'Yes. Solar panels can still generate power during cloudy and rainy weather, although production may be reduced. A properly designed system with sufficient battery storage helps maintain reliable power.',
+      'Absolutely. Tell us about the appliances or equipment you want to power, your electricity needs, and your budget. We can discuss suitable options for your situation.',
   },
   {
-    question: 'How does the installation process work?',
-    answerIntro: "It's simple: ",
+    question: 'Do you provide maintenance and support after installation?',
     answer:
-      'Tell us what you need → Property assessment → Get your quote → Professional installation → Enjoy reliable solar power.',
-    emphasizeAnswer: true,
+      'We encourage customers to contact us for assistance with their installed systems. Get in touch to discuss the support or maintenance service you need and confirm its availability.',
+  },
+  {
+    question: 'Can you help me upgrade or improve my existing power system?',
+    answer:
+      'Yes, we can discuss your existing setup and the improvements you would like to make. Contact us to explain your current system and power needs so we can discuss suitable upgrade options.',
+  },
+  {
+    question: 'How can I request a quote or get started with your services?',
+    answer:
+      'Getting started is simple. Call us on 081 061 1178 or email engafeeztech@gmail.com to explain your requirements, ask questions, and discuss the next steps for your project.',
   },
 ];
